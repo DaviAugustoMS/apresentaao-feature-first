@@ -65,7 +65,7 @@
       .steps-grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
+        gap: 10px;
         position: relative;
         z-index: 10;
       }
@@ -73,8 +73,8 @@
       .step-card {
         background-color: rgba(30, 41, 59, 0.5);
         border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 12px;
-        padding: 16px;
+        border-radius: 10px;
+        padding: 10px 12px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -83,12 +83,12 @@
         transition:
           transform 0.3s ease,
           border-color 0.3s ease;
-        height: 220px;
+        height: 160px;
         backdrop-filter: blur(5px);
       }
 
       .step-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
         border-color: rgba(96, 165, 250, 0.5);
         background-color: rgba(30, 41, 59, 0.8);
         z-index: 20;
@@ -112,8 +112,8 @@
       }
 
       .step-number {
-        width: 40px;
-        height: 40px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
         border: 2px solid;
         display: flex;
@@ -121,15 +121,15 @@
         justify-content: center;
         font-family: "Fira Code", monospace;
         font-weight: 700;
-        font-size: 1.1rem;
-        margin-bottom: 12px;
+        font-size: 0.7rem;
+        margin-bottom: 6px;
         position: relative;
         z-index: 2;
       }
 
       .step-icon {
-        font-size: 1.8rem;
-        margin-bottom: 12px;
+        font-size: 1.2rem;
+        margin-bottom: 6px;
         opacity: 0.9;
       }
 
@@ -172,9 +172,9 @@
       .code-pill {
         background-color: #1e293b;
         color: #94a3b8;
-        padding: 4px 8px;
+        padding: 3px 6px;
         border-radius: 4px;
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         font-family: "Fira Code", monospace;
         margin-top: auto;
         border: 1px solid #334155;
@@ -188,32 +188,30 @@
       <div class="bg-glow glow-blue"></div>
       <!-- Header -->
       <div
-        class="px-16 pt-10 pb-6 z-10 flex justify-between items-end border-b border-gray-800">
+        class="px-12 pt-6 pb-4 z-10 flex justify-between items-end border-b border-gray-800 flex-shrink-0">
         <div>
-          <div class="flex items-center gap-3 mb-2">
+          <div class="flex items-center gap-3 mb-1">
             <span
-              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">
               Workflow
             </span>
-            <span class="text-gray-400 text-sm font-mono"
-              >10 Steps to Feature-First</span
-            >
+            <span class="text-gray-400 text-sm font-mono">10 Steps to Feature-First</span>
           </div>
           <h1
-            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            class="font-heading text-3xl font-extrabold text-white tracking-tight">
             Guia de Migração — Passo a Passo
           </h1>
         </div>
         <div class="text-right">
-          <p class="text-gray-400 text-sm font-mono flex items-center gap-2">
-            <i class="fas fa-route text-blue-500"></i>
+          <p class="text-gray-400 text-xs font-mono flex items-center gap-2">
+            <i class="fas fa-diagram-project text-blue-400"></i>
             Siga a ordem estrita para evitar regressão
           </p>
         </div>
       </div>
       <!-- Main Content -->
       <div
-        class="flex-1 px-16 py-10 relative z-10 flex flex-col justify-center">
+        class="flex-1 px-12 py-4 relative z-10 flex flex-col justify-center min-h-0 overflow-y-auto">
         <!-- Connectors (Visual Lines) -->
         <div class="absolute inset-0 z-0 pointer-events-none">
           <!-- We simulate lines by simple positioning relative to the container padding -->
@@ -224,8 +222,8 @@
           <div class="step-card phase-setup">
             <div class="step-number">01</div>
             <i class="fas fa-folder-plus step-icon text-blue-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Criar Estrutura</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Criar Estrutura</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Crie a pasta da feature e subdiretórios padrão.
             </p>
             <div class="code-pill">mkdir src/features/xy</div>
@@ -234,8 +232,8 @@
           <div class="step-card phase-setup">
             <div class="step-number">02</div>
             <i class="fas fa-cloud-arrow-down step-icon text-blue-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Extrair API</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Extrair API</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Mova chamadas HTTP diretas para camada de API.
             </p>
             <div class="code-pill">api/myFeatureApi.ts</div>
@@ -244,8 +242,8 @@
           <div class="step-card phase-setup">
             <div class="step-number">03</div>
             <i class="fas fa-server step-icon text-blue-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Hooks (Server)</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Hooks (Server)</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Implemente React Query para cache e loading states.
             </p>
             <div class="code-pill">hooks/useMyQuery.ts</div>
@@ -254,8 +252,8 @@
           <div class="step-card phase-setup">
             <div class="step-number">04</div>
             <i class="fas fa-database step-icon text-blue-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Store (Client)</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Store (Client)</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Defina estado global de UI com Zustand se necessário.
             </p>
             <div class="code-pill">stores/useMyStore.ts</div>
@@ -264,8 +262,8 @@
           <div class="step-card phase-setup">
             <div class="step-number">05</div>
             <i class="fas fa-shield-halved step-icon text-blue-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Validators</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Validators</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Isole regras de validação em funções puras.
             </p>
             <div class="code-pill">validators/schema.ts</div>
@@ -274,8 +272,8 @@
           <div class="step-card phase-logic">
             <div class="step-number">06</div>
             <i class="fas fa-brain step-icon text-purple-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">ViewModels</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">ViewModels</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Orquestre a lógica conectando Store, Hooks e API.
             </p>
             <div class="code-pill">viewModels/useLogic.ts</div>
@@ -283,9 +281,9 @@
           <!-- STEP 7 -->
           <div class="step-card phase-logic">
             <div class="step-number">07</div>
-            <i class="fas fa-broom step-icon text-purple-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Refatorar Telas</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <i class="fas fa-wand-magic-sparkles step-icon text-purple-400"></i>
+            <h3 class="font-bold text-white text-xs mb-1">Refatorar Telas</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Limpe os componentes de UI (Dumb Components).
             </p>
             <div class="code-pill">screens/MyScreen.tsx</div>
@@ -293,9 +291,9 @@
           <!-- STEP 8 -->
           <div class="step-card phase-cleanup">
             <div class="step-number">08</div>
-            <i class="fas fa-door-open step-icon text-emerald-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Public API</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <i class="fas fa-plug step-icon text-emerald-400"></i>
+            <h3 class="font-bold text-white text-xs mb-1">Public API</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Defina o contrato público de exportação no index.
             </p>
             <div class="code-pill">index.ts</div>
@@ -304,8 +302,8 @@
           <div class="step-card phase-cleanup">
             <div class="step-number">09</div>
             <i class="fas fa-rotate step-icon text-emerald-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Atualizar Imports</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Atualizar Imports</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Corrija referências no projeto para a nova feature.
             </p>
             <div class="code-pill">Fix references</div>
@@ -314,21 +312,16 @@
           <div class="step-card phase-cleanup">
             <div class="step-number">10</div>
             <i class="fas fa-trash-can step-icon text-red-400"></i>
-            <h3 class="font-bold text-white text-sm mb-2">Remover Legado</h3>
-            <p class="text-xs text-gray-400 leading-tight">
+            <h3 class="font-bold text-white text-xs mb-1">Remover Legado</h3>
+            <p class="text-[10px] text-gray-400 leading-tight">
               Delete os arquivos antigos sem piedade.
             </p>
             <div class="code-pill">rm src/legacy/...</div>
           </div>
         </div>
-        <!-- Directional Arrows (Simulated) -->
-        <div
-          class="absolute top-1/2 left-0 w-full flex justify-center items-center pointer-events-none opacity-20">
-          <i class="fas fa-arrow-right text-6xl text-white"></i>
-        </div>
       </div>
       <!-- Footer -->
-      <div class="absolute bottom-4 right-16 text-gray-600 text-xs font-mono">
+      <div class="absolute bottom-3 left-12 text-gray-600 text-xs font-mono">
         Processo Padronizado v1.0
       </div>
     </div>

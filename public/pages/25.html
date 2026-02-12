@@ -30,6 +30,7 @@
         flex-direction: column;
         background-color: #0f172a;
         position: relative;
+        overflow: hidden;
       }
 
       /* Font Utilities */
@@ -95,13 +96,13 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 4px 12px;
-        border-radius: 6px;
-        font-size: 0.75rem;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.65rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        min-width: 100px;
+        min-width: 70px;
       }
 
       .badge-legacy {
@@ -123,15 +124,15 @@
       }
 
       .icon-box {
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 10px;
+        border-radius: 8px;
         background-color: rgba(15, 23, 42, 0.6);
         border: 1px solid #334155;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
       }
 
       .metric-value {
@@ -146,20 +147,20 @@
       <div class="glow-effect glow-top-right"></div>
       <div class="glow-effect glow-bottom-left"></div>
       <!-- Header -->
-      <div class="px-16 pt-12 pb-6 z-10 flex justify-between items-end">
+      <div class="px-12 pt-6 pb-4 z-10 flex justify-between items-end flex-shrink-0">
         <div>
-          <div class="flex items-center gap-3 mb-2">
+          <div class="flex items-center gap-3 mb-1">
             <span
-              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">
               <i class="fas fa-chart-bar mr-2"></i> KPIs Técnicos
             </span>
             <span class="text-gray-400 text-sm font-mono">8.0 Métricas</span>
           </div>
           <h1
-            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            class="font-heading text-3xl font-extrabold text-white tracking-tight">
             Impacto no Desenvolvimento
           </h1>
-          <p class="text-gray-400 mt-2 text-lg font-light">
+          <p class="text-gray-400 mt-1 text-sm font-light">
             Comparativo direto:
             <span class="text-red-400 font-medium">Legado Técnico</span> vs
             <span class="text-green-400 font-medium">Feature-First</span>
@@ -167,25 +168,25 @@
         </div>
         <!-- Metric Card -->
         <div
-          class="bg-slate-800 bg-opacity-60 border border-slate-700 p-4 rounded-xl backdrop-blur-sm flex items-center gap-4">
+          class="bg-slate-800 bg-opacity-60 border border-slate-700 p-2 rounded-xl backdrop-blur-sm flex items-center gap-2">
           <div class="text-right">
-            <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">
+            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">
               Refatorabilidade
             </p>
-            <p class="text-2xl font-bold text-green-400">Alta 🚀</p>
+            <p class="text-lg font-bold text-green-400">Alta 🚀</p>
           </div>
           <div
-            class="h-10 w-10 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center text-green-400">
+            class="h-8 w-8 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center text-green-400">
             <i class="fas fa-wrench"></i>
           </div>
         </div>
       </div>
       <!-- Main Content: Comparison Table -->
-      <div class="flex-1 px-16 py-2 z-10 relative flex flex-col justify-center">
+      <div class="flex-1 px-12 py-2 z-10 relative flex flex-col justify-center min-h-0 overflow-y-auto">
         <div class="table-container backdrop-blur-md">
           <!-- Table Header -->
           <div
-            class="table-header grid grid-cols-12 px-6 py-4 text-gray-400 text-xs font-bold uppercase tracking-wider font-heading">
+            class="table-header grid grid-cols-12 px-4 py-2 text-gray-400 text-[10px] font-bold uppercase tracking-wider font-heading">
             <div class="col-span-4">Métrica</div>
             <div class="col-span-3 text-center">Legado (Antes)</div>
             <div class="col-span-1 text-center"></div>
@@ -193,18 +194,14 @@
             <div class="col-span-1 text-right">Evolução</div>
           </div>
           <!-- Row 1: Diretórios -->
-          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
-            <div class="col-span-4 flex items-center gap-4">
+          <div class="table-row grid grid-cols-12 px-4 py-3 items-center">
+            <div class="col-span-4 flex items-center gap-3">
               <div class="icon-box text-blue-400">
                 <i class="fas fa-folder-tree"></i>
               </div>
               <div>
-                <p class="font-semibold text-white text-base">
-                  Diretórios por Feature
-                </p>
-                <p class="text-xs text-gray-500 mt-1">
-                  Fragmentação de arquivos
-                </p>
+                <p class="font-semibold text-white text-sm">Diretórios por Feature</p>
+                <p class="text-[10px] text-gray-500 mt-0.5">Fragmentação de arquivos</p>
               </div>
             </div>
             <div class="col-span-3 flex justify-center">
@@ -217,18 +214,18 @@
               <div class="badge badge-new metric-value">1 Pasta</div>
             </div>
             <div class="col-span-1 text-right">
-              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+              <i class="fas fa-check-circle text-green-500"></i>
             </div>
           </div>
           <!-- Row 2: Hooks Globais -->
-          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
-            <div class="col-span-4 flex items-center gap-4">
+          <div class="table-row grid grid-cols-12 px-4 py-3 items-center">
+            <div class="col-span-4 flex items-center gap-3">
               <div class="icon-box text-purple-400">
                 <i class="fas fa-bezier-curve"></i>
               </div>
               <div>
-                <p class="font-semibold text-white text-base">Hooks Globais</p>
-                <p class="text-xs text-gray-500 mt-1">
+                <p class="font-semibold text-white text-sm">Hooks Globais</p>
+                <p class="text-[10px] text-gray-500 mt-0.5">
                   Lógica compartilhada arriscada
                 </p>
               </div>
@@ -243,18 +240,18 @@
               <div class="badge badge-new metric-value">Por Feature</div>
             </div>
             <div class="col-span-1 text-right">
-              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+              <i class="fas fa-check-circle text-green-500"></i>
             </div>
           </div>
           <!-- Row 3: Stores Globais -->
-          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
-            <div class="col-span-4 flex items-center gap-4">
+          <div class="table-row grid grid-cols-12 px-4 py-3 items-center">
+            <div class="col-span-4 flex items-center gap-3">
               <div class="icon-box text-yellow-400">
                 <i class="fas fa-database"></i>
               </div>
               <div>
-                <p class="font-semibold text-white text-base">Stores Globais</p>
-                <p class="text-xs text-gray-500 mt-1">
+                <p class="font-semibold text-white text-sm">Stores Globais</p>
+                <p class="text-[10px] text-gray-500 mt-0.5">
                   Estado monolítico (Zustand)
                 </p>
               </div>
@@ -269,82 +266,66 @@
               <div class="badge badge-new metric-value">Por Feature</div>
             </div>
             <div class="col-span-1 text-right">
-              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+              <i class="fas fa-check-circle text-green-500"></i>
             </div>
           </div>
           <!-- Row 4: Acoplamento -->
-          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
-            <div class="col-span-4 flex items-center gap-4">
+          <div class="table-row grid grid-cols-12 px-4 py-3 items-center">
+            <div class="col-span-4 flex items-center gap-3">
               <div class="icon-box text-red-400">
                 <i class="fas fa-link"></i>
               </div>
               <div>
-                <p class="font-semibold text-white text-base">
-                  Nível de Acoplamento
-                </p>
-                <p class="text-xs text-gray-500 mt-1">
+                <p class="font-semibold text-white text-sm">Nível de Acoplamento</p>
+                <p class="text-[10px] text-gray-500 mt-0.5">
                   Dependência entre módulos
                 </p>
               </div>
             </div>
             <div class="col-span-3 flex justify-center">
-              <span
-                class="text-red-400 font-bold uppercase tracking-wide text-sm"
-                >Alto</span
-              >
+              <span class="text-red-400 font-bold uppercase tracking-wide text-xs">Alto</span>
             </div>
             <div class="col-span-1 flex justify-center">
               <i class="fas fa-arrow-right text-gray-600"></i>
             </div>
             <div class="col-span-3 flex justify-center">
-              <span
-                class="text-green-400 font-bold uppercase tracking-wide text-sm"
-                >Baixo</span
-              >
+              <span class="text-green-400 font-bold uppercase tracking-wide text-xs">Baixo</span>
             </div>
             <div class="col-span-1 text-right">
-              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+              <i class="fas fa-check-circle text-green-500"></i>
             </div>
           </div>
           <!-- Row 5: Refatorabilidade -->
-          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
-            <div class="col-span-4 flex items-center gap-4">
+          <div class="table-row grid grid-cols-12 px-4 py-3 items-center">
+            <div class="col-span-4 flex items-center gap-3">
               <div class="icon-box text-teal-400">
                 <i class="fas fa-sync-alt"></i>
               </div>
               <div>
-                <p class="font-semibold text-white text-base">
-                  Refatorabilidade
-                </p>
-                <p class="text-xs text-gray-500 mt-1">
+                <p class="font-semibold text-white text-sm">Refatorabilidade</p>
+                <p class="text-[10px] text-gray-500 mt-0.5">
                   Facilidade de manutenção
                 </p>
               </div>
             </div>
             <div class="col-span-3 flex justify-center">
-              <span
-                class="text-red-400 font-bold uppercase tracking-wide text-sm"
-                >Baixa</span
-              >
+              <span class="text-red-400 font-bold uppercase tracking-wide text-xs">Baixa</span>
             </div>
             <div class="col-span-1 flex justify-center">
               <i class="fas fa-arrow-right text-gray-600"></i>
             </div>
             <div class="col-span-3 flex justify-center">
-              <span
-                class="text-green-400 font-bold uppercase tracking-wide text-sm"
-                >Alta</span
-              >
+              <span class="text-green-400 font-bold uppercase tracking-wide text-xs">Alta</span>
             </div>
             <div class="col-span-1 text-right">
-              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+              <i class="fas fa-check-circle text-green-500"></i>
             </div>
           </div>
         </div>
       </div>
       <!-- Footer Info -->
       <div
-        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        class="px-12 pb-3 z-10 flex justify-between items-center text-[10px] text-gray-600 font-mono flex-shrink-0">
         <div>
           <i class="fas fa-info-circle mr-2"></i>
           Dados extraídos da análise estática do repositório

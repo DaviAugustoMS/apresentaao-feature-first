@@ -30,6 +30,7 @@
         flex-direction: column;
         background-color: #0f172a;
         position: relative;
+        overflow: hidden;
       }
 
       .font-heading {
@@ -76,18 +77,19 @@
       .timeline-wrapper {
         position: relative;
         width: 100%;
-        height: 100%;
+        flex: 1;
+        min-height: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 40px;
+        padding: 0 24px;
       }
 
       .timeline-track {
         position: absolute;
         top: 50%;
-        left: 100px;
-        right: 100px;
+        left: 80px;
+        right: 80px;
         height: 4px;
         background-color: #334155;
         transform: translateY(-50%);
@@ -119,7 +121,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 400px; /* Defines the interactable area height */
+        height: 320px;
       }
 
       /* Connector Line to Node */
@@ -160,12 +162,12 @@
       /* Card Styles */
       .card {
         position: absolute;
-        width: 260px;
+        width: 220px;
         background-color: rgba(30, 41, 59, 0.6);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        padding: 24px;
+        border-radius: 12px;
+        padding: 14px 16px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -176,23 +178,23 @@
 
       .card:hover {
         opacity: 1;
-        transform: translateY(-5px);
+        transform: translateY(-3px);
         background-color: rgba(30, 41, 59, 0.9);
         z-index: 30;
       }
 
       /* Alternating Positions */
       .milestone:nth-child(odd) .card {
-        bottom: 60%; /* Above the line */
+        bottom: 58%;
       }
       .milestone:nth-child(odd)::before {
-        height: 10%; /* Connect node to card bottom */
-        top: 40%; /* Adjust based on card position */
+        height: 8%;
+        top: 42%;
         transform: translate(-50%, 0);
       }
 
       .milestone:nth-child(even) .card {
-        top: 60%; /* Below the line */
+        top: 58%;
       }
 
       /* Specific Colors per Phase */
@@ -245,23 +247,23 @@
       }
 
       .icon-box {
-        width: 56px;
-        height: 56px;
-        border-radius: 12px;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
-        margin-bottom: 16px;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
         border: 1px solid currentColor;
       }
 
       .phase-label {
         font-family: "Fira Code", monospace;
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
         opacity: 0.8;
       }
 
@@ -286,20 +288,20 @@
       <div class="bg-glow glow-purple"></div>
       <div class="bg-glow glow-center"></div>
       <!-- Header -->
-      <div class="w-full px-16 pt-10 pb-4 z-10 flex justify-between items-end">
+      <div class="w-full px-12 pt-6 pb-3 z-10 flex justify-between items-end flex-shrink-0">
         <div>
-          <div class="flex items-center gap-3 mb-2">
+          <div class="flex items-center gap-3 mb-1">
             <span
-              class="bg-indigo-900 text-indigo-300 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider border border-indigo-700">
-              <i class="fas fa-chart-line mr-2"></i> ROI Técnico
+              class="bg-purple-900 bg-opacity-40 text-purple-300 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-purple-700">
+              ROI Técnico
             </span>
             <span class="text-gray-400 text-sm font-mono">12. Retorno</span>
           </div>
           <h1
-            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            class="font-heading text-3xl font-extrabold text-gray-200 tracking-tight">
             Timeline de Benefícios
           </h1>
-          <p class="text-gray-400 mt-1 text-lg font-light">
+          <p class="text-gray-400 mt-0.5 text-sm font-light">
             O impacto da nova arquitetura ao longo do tempo
           </p>
         </div>
@@ -314,14 +316,13 @@
           <div class="card">
             <div class="phase-label text-blue-300">Imediato</div>
             <div class="icon-box">
-              <i class="fas fa-folder-tree"></i>
+              <i class="fas fa-th-large"></i>
             </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2">
+            <h3 class="font-heading text-base font-bold text-white mb-1">
               Organização
             </h3>
-            <p class="text-gray-400 text-xs leading-relaxed">
-              Fim da "caça ao tesouro". Estrutura lógica e previsível reduz
-              tempo de navegação em 60%.
+            <p class="text-gray-400 text-[10px] leading-snug">
+              Fim da "caça ao tesouro". Estrutura lógica e previsível reduz tempo de navegação em 60%.
             </p>
           </div>
         </div>
@@ -331,14 +332,13 @@
           <div class="card">
             <div class="phase-label text-cyan-300">Curto Prazo</div>
             <div class="icon-box">
-              <i class="fas fa-code-merge"></i>
+              <i class="fas fa-wrench"></i>
             </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2">
+            <h3 class="font-heading text-base font-bold text-white mb-1">
               Menos Conflitos
             </h3>
-            <p class="text-gray-400 text-xs leading-relaxed">
-              Features isoladas significam que times diferentes não tocam nos
-              mesmos arquivos. Merge tranquilo.
+            <p class="text-gray-400 text-[10px] leading-snug">
+              Arquitetura boa aparece quando o sistema cresce e não quebra.
             </p>
           </div>
         </div>
@@ -348,14 +348,13 @@
           <div class="card">
             <div class="phase-label text-purple-300">Médio Prazo</div>
             <div class="icon-box">
-              <i class="fas fa-shield-virus"></i>
+              <i class="fas fa-shield-alt"></i>
             </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2">
+            <h3 class="font-heading text-base font-bold text-white mb-1">
               Estabilidade
             </h3>
-            <p class="text-gray-400 text-xs leading-relaxed">
-              Menos regressão. Alterações em uma feature não causam efeitos
-              colaterais em outras partes do app.
+            <p class="text-gray-400 text-[10px] leading-snug">
+              Menos regressão. Alterações em uma feature não causam efeitos colaterais em outras partes do app.
             </p>
           </div>
         </div>
@@ -367,24 +366,14 @@
             <div class="icon-box">
               <i class="fas fa-rocket"></i>
             </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2">
+            <h3 class="font-heading text-base font-bold text-white mb-1">
               Escalabilidade Real
             </h3>
-            <p class="text-gray-400 text-xs leading-relaxed">
-              O sistema cresce em complexidade, mas a velocidade de
-              desenvolvimento se mantém constante.
+            <p class="text-gray-400 text-[10px] leading-snug">
+              O sistema cresce em complexidade, mas a velocidade de desenvolvimento se mantém constante.
             </p>
           </div>
         </div>
-      </div>
-      <!-- Bottom Quote/Insight -->
-      <div class="absolute bottom-8 left-0 right-0 text-center z-20">
-        <p
-          class="text-gray-500 font-mono text-sm bg-gray-900 bg-opacity-80 inline-block px-6 py-2 rounded-full border border-gray-800">
-          <i class="fas fa-quote-left mr-2 text-gray-600"></i>
-          Arquitetura boa aparece quando o sistema cresce — e não quebra.
-          <i class="fas fa-quote-right ml-2 text-gray-600"></i>
-        </p>
       </div>
     </div>
   </body>
