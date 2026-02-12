@@ -112,7 +112,8 @@
       .layers-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
+        gap: 4px;
+        /* padding: 10px; */
       }
 
       .layer-card {
@@ -289,8 +290,10 @@
         </div>
         <!-- Right Column: Responsibilities Grid -->
         <div
-          class="w-2/3 flex flex-col justify-center min-h-0 overflow-y-auto py-1">
-          <div class="layers-grid">
+          class="w-2/3 flex flex-col justify-center min-h-0 overflow-y-auto px-8 py-8">
+          <div
+            class="layers-grid"
+            style="grid-template-columns: repeat(3, 1fr)">
             <!-- Data Layer -->
             <div class="layer-card theme-data">
               <div class="icon-wrapper"><i class="fas fa-cloud"></i></div>
@@ -383,8 +386,7 @@
               </div>
             </div>
             <!-- Public API -->
-            <div
-              class="layer-card theme-public col-span-3 flex-row items-center justify-between">
+            <div class="layer-card theme-public">
               <div class="flex items-center gap-2">
                 <div class="icon-wrapper"><i class="fas fa-door-open"></i></div>
                 <div>

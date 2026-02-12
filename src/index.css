@@ -9,4 +9,59 @@ body {
   background-color: #0f172a;
   color: #f8fafc;
   overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport - evita barra de URL no mobile */
+}
+
+/* Nav respeita safe-area em dispositivos com notch */
+.slide-nav {
+  bottom: max(1rem, env(safe-area-inset-bottom));
+}
+@media (min-width: 640px) {
+  .slide-nav {
+    bottom: 1.5rem;
+  }
+}
+
+/* Garante que o conteúdo do slide preencha o container responsivo */
+.presentation-container .slide-content {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+/* Tabelas e overflow - scroll horizontal em telas pequenas */
+.presentation-container .table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Grids responsivos - reduz colunas em telas pequenas */
+@media (max-width: 768px) {
+  .presentation-container .steps-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .presentation-container .layers-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .presentation-container .table-header,
+  .presentation-container .table-row {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .presentation-container .steps-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .presentation-container .layers-grid {
+    grid-template-columns: 1fr !important;
+  }
 }

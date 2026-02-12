@@ -1,7 +1,13 @@
 export function SlideViewer({ slides, currentSlide }) {
   return (
-    <div className="presentation-wrapper flex min-h-screen items-center justify-center p-5">
-      <div className="presentation-container relative h-[720px] w-[1280px] overflow-hidden rounded-xl shadow-2xl">
+    <div className="presentation-wrapper flex min-h-screen items-center justify-center p-4 sm:p-6">
+      <div
+        className="presentation-container relative overflow-hidden rounded-xl shadow-2xl"
+        style={{
+          width: 'min(100%, 1280px, 177.78vh)',
+          aspectRatio: '16/9',
+        }}
+      >
         {slides.map((slide) => (
           <SlideComponent
             key={slide.id}
