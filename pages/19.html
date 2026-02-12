@@ -1,0 +1,344 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Schedule - Plano de Refatoração</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.1;
+        z-index: 0;
+      }
+      .glow-blue {
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #3b82f6;
+      }
+      .glow-purple {
+        bottom: -100px;
+        left: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #7c3aed;
+      }
+
+      /* Checklist Styling */
+      .checklist-container {
+        position: relative;
+        z-index: 10;
+      }
+
+      .checklist-item {
+        background-color: rgba(30, 41, 59, 0.4);
+        border: 1px solid #334155;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .checklist-item:hover {
+        background-color: rgba(51, 65, 85, 0.6);
+        transform: translateX(8px);
+        border-color: #475569;
+      }
+
+      .checklist-item.active {
+        border-color: #3b82f6;
+        background-color: rgba(59, 130, 246, 0.1);
+      }
+
+      .checklist-icon {
+        width: 24px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .step-number {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.03);
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .status-pill {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+      }
+
+      .status-pending {
+        background-color: rgba(148, 163, 184, 0.1);
+        color: #94a3b8;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+      }
+      .status-progress {
+        background-color: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      .status-done {
+        background-color: rgba(16, 185, 129, 0.15);
+        color: #34d399;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      /* Progress Bar */
+      .progress-track {
+        width: 100%;
+        height: 8px;
+        background-color: #1e293b;
+        border-radius: 9999px;
+        overflow: hidden;
+        margin-top: 24px;
+      }
+      .progress-fill {
+        height: 100%;
+        background-color: #3b82f6;
+        width: 15%; /* Simulation of current progress */
+        border-radius: 9999px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background -->
+      <div class="glow-effect glow-blue"></div>
+      <div class="glow-effect glow-purple"></div>
+      <!-- Header -->
+      <div class="px-16 pt-12 pb-2 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              <i class="fas fa-calendar-alt mr-2"></i> Schedule
+            </span>
+            <span class="text-gray-400 text-sm font-mono">Refatoração</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Plano de Ação
+          </h1>
+          <p class="text-gray-400 mt-2 text-lg font-light">
+            Roteiro passo-a-passo para migração Feature-First
+          </p>
+        </div>
+        <!-- Progress Summary -->
+        <div class="w-64">
+          <div
+            class="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
+            <span class="text-gray-400">Progresso Geral</span>
+            <span class="text-blue-400">15%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="flex-1 px-16 py-8 z-10 grid grid-cols-12 gap-12">
+        <!-- Left Column: The Checklist -->
+        <div
+          class="col-span-8 checklist-container flex flex-col justify-center gap-3">
+          <!-- Item 1 -->
+          <div class="checklist-item active p-4 flex items-center gap-4">
+            <div class="checklist-icon text-blue-400 text-xl">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-white font-bold text-lg">
+                Extrair Camada de API
+              </h3>
+              <p class="text-gray-400 text-sm mt-0.5">
+                Isolar chamadas HTTP do componente de UI
+              </p>
+            </div>
+            <span class="status-pill status-progress z-10">Em Progresso</span>
+            <span class="step-number">01</span>
+          </div>
+          <!-- Item 2 -->
+          <div class="checklist-item p-4 flex items-center gap-4">
+            <div class="checklist-icon text-gray-600 text-xl">
+              <i class="far fa-square"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-200 font-semibold text-lg">
+                Criar Hooks React Query
+              </h3>
+              <p class="text-gray-500 text-sm mt-0.5">
+                Gerenciamento de server-state e cache
+              </p>
+            </div>
+            <span class="status-pill status-pending z-10">Pendente</span>
+            <span class="step-number">02</span>
+          </div>
+          <!-- Item 3 -->
+          <div class="checklist-item p-4 flex items-center gap-4">
+            <div class="checklist-icon text-gray-600 text-xl">
+              <i class="far fa-square"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-200 font-semibold text-lg">
+                Definir Store (Zustand)
+              </h3>
+              <p class="text-gray-500 text-sm mt-0.5">
+                Estado de UI e fluxos complexos da jornada
+              </p>
+            </div>
+            <span class="status-pill status-pending z-10">Pendente</span>
+            <span class="step-number">03</span>
+          </div>
+          <!-- Item 4 -->
+          <div class="checklist-item p-4 flex items-center gap-4">
+            <div class="checklist-icon text-gray-600 text-xl">
+              <i class="far fa-square"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-200 font-semibold text-lg">
+                Dividir em ViewModels
+              </h3>
+              <p class="text-gray-500 text-sm mt-0.5">
+                Fragmentar o hook gigante em lógicas menores
+              </p>
+            </div>
+            <span class="status-pill status-pending z-10">Pendente</span>
+            <span class="step-number">04</span>
+          </div>
+          <!-- Item 5 -->
+          <div class="checklist-item p-4 flex items-center gap-4">
+            <div class="checklist-icon text-gray-600 text-xl">
+              <i class="far fa-square"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-200 font-semibold text-lg">
+                Refatorar Telas &amp; Validators
+              </h3>
+              <p class="text-gray-500 text-sm mt-0.5">
+                Limpar JSX e extrair validações puras
+              </p>
+            </div>
+            <span class="status-pill status-pending z-10">Pendente</span>
+            <span class="step-number">05</span>
+          </div>
+          <!-- Item 6 -->
+          <div class="checklist-item p-4 flex items-center gap-4">
+            <div class="checklist-icon text-gray-600 text-xl">
+              <i class="far fa-square"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-200 font-semibold text-lg">
+                Public API e Limpeza
+              </h3>
+              <p class="text-gray-500 text-sm mt-0.5">
+                Exportar contratos em index.ts e remover legado
+              </p>
+            </div>
+            <span class="status-pill status-pending z-10">Pendente</span>
+            <span class="step-number">06</span>
+          </div>
+        </div>
+        <!-- Right Column: Strategy/Stats -->
+        <div class="col-span-4 flex flex-col justify-center gap-6">
+          <div
+            class="bg-slate-800 bg-opacity-60 border border-slate-700 p-6 rounded-xl backdrop-blur-md">
+            <div
+              class="w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center text-purple-400 mb-4">
+              <i class="fas fa-bullseye text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">
+              Objetivo Principal
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Eliminar o "God Object"
+              <span
+                class="font-mono text-purple-300 bg-purple-900 bg-opacity-30 px-1 rounded"
+                >useNewSchedule</span
+              >
+              e distribuir responsabilidades.
+            </p>
+          </div>
+          <div
+            class="bg-slate-800 bg-opacity-60 border border-slate-700 p-6 rounded-xl backdrop-blur-md">
+            <div
+              class="w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center text-green-400 mb-4">
+              <i class="fas fa-microchip text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Ganho Técnico</h3>
+            <ul class="space-y-2 mt-3">
+              <li class="flex items-center gap-2 text-sm text-gray-300">
+                <i class="fas fa-check text-green-500 text-xs"></i>
+                Testabilidade isolada
+              </li>
+              <li class="flex items-center gap-2 text-sm text-gray-300">
+                <i class="fas fa-check text-green-500 text-xs"></i> Cache
+                eficiente
+              </li>
+              <li class="flex items-center gap-2 text-sm text-gray-300">
+                <i class="fas fa-check text-green-500 text-xs"></i> Manutenção
+                segura
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div
+        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        <div>
+          <i class="fas fa-tasks mr-2"></i>
+          Sprint atual: Migração Core
+        </div>
+        <div>Prioridade: <span class="text-red-400 font-bold">ALTA</span></div>
+      </div>
+    </div>
+  </body>
+</html>

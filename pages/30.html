@@ -1,0 +1,247 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Regra de Ouro - Arquitetura</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;500;700&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Ambience (Solid colors with blur, no gradients) */
+      .ambient-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .blob-gold {
+        background-color: #fbbf24;
+        width: 600px;
+        height: 600px;
+        top: -200px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .blob-purple {
+        background-color: #7c3aed;
+        width: 500px;
+        height: 500px;
+        bottom: -150px;
+        left: -100px;
+      }
+      .blob-blue {
+        background-color: #3b82f6;
+        width: 500px;
+        height: 500px;
+        bottom: -150px;
+        right: -100px;
+      }
+
+      /* Golden Rule Container */
+      .content-wrapper {
+        z-index: 10;
+        width: 100%;
+        padding: 0 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Crown Icon Container */
+      .crown-container {
+        width: 80px;
+        height: 80px;
+        background-color: rgba(251, 191, 36, 0.1);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        box-shadow: 0 0 30px rgba(251, 191, 36, 0.1);
+      }
+
+      /* Cards Styling */
+      .rule-card {
+        background-color: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(16px);
+        border-radius: 16px;
+        padding: 32px;
+        width: 100%;
+        max-width: 1000px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rule-card:hover {
+        transform: scale(1.02);
+        background-color: rgba(30, 41, 59, 0.8);
+      }
+
+      .rule-feature {
+        border-left: 6px solid #8b5cf6; /* Purple */
+        border-top: 1px solid rgba(139, 92, 246, 0.2);
+        border-right: 1px solid rgba(139, 92, 246, 0.2);
+        border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+      }
+
+      .rule-shared {
+        border-left: 6px solid #f59e0b; /* Amber */
+        border-top: 1px solid rgba(245, 158, 11, 0.2);
+        border-right: 1px solid rgba(245, 158, 11, 0.2);
+        border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+      }
+
+      .path-badge {
+        font-family: "Fira Code", monospace;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .path-feature {
+        background-color: rgba(139, 92, 246, 0.2);
+        color: #a78bfa;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+      }
+
+      .path-shared {
+        background-color: rgba(245, 158, 11, 0.2);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+      }
+
+      /* Warning Banner */
+      .no-exceptions {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 32px;
+        background-color: rgba(220, 38, 38, 0.1);
+        border: 1px solid rgba(220, 38, 38, 0.4);
+        border-radius: 50px;
+        box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.2);
+      }
+
+      .arrow-indicator {
+        font-size: 1.5rem;
+        opacity: 0.6;
+        margin: 0 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Ambient Blobs -->
+      <div class="ambient-blob blob-gold"></div>
+      <div class="ambient-blob blob-purple"></div>
+      <div class="ambient-blob blob-blue"></div>
+      <div class="content-wrapper">
+        <!-- Icon -->
+        <div class="crown-container">
+          <i class="fas fa-crown text-4xl text-yellow-400"></i>
+        </div>
+        <!-- Title -->
+        <div class="text-center mb-10">
+          <h1
+            class="font-heading text-6xl font-black text-white tracking-tight mb-2 uppercase">
+            Regra de Ouro
+          </h1>
+          <p
+            class="text-xl text-yellow-200 font-light tracking-widest uppercase opacity-80">
+            Diretriz Arquitetural #1
+          </p>
+        </div>
+        <!-- Rule Card 1: Specific -->
+        <div class="rule-card rule-feature">
+          <div class="flex flex-col">
+            <p
+              class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">
+              Condição 01
+            </p>
+            <h3 class="font-heading text-2xl font-bold text-white">
+              Se é específico da feature...
+            </h3>
+          </div>
+          <i class="fas fa-arrow-right text-purple-400 arrow-indicator"></i>
+          <div class="path-badge path-feature">
+            <i class="fas fa-folder"></i>
+            src/features/&lt;name&gt;/
+          </div>
+        </div>
+        <!-- Rule Card 2: Shared -->
+        <div class="rule-card rule-shared">
+          <div class="flex flex-col">
+            <p
+              class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">
+              Condição 02
+            </p>
+            <h3 class="font-heading text-2xl font-bold text-white">
+              Se é realmente compartilhado...
+            </h3>
+          </div>
+          <i class="fas fa-arrow-right text-amber-400 arrow-indicator"></i>
+          <div class="path-badge path-shared">
+            <i class="fas fa-share-nodes"></i>
+            src/shared/
+          </div>
+        </div>
+        <!-- Footer Badge -->
+        <div class="no-exceptions">
+          <i class="fas fa-gavel text-red-500 text-xl"></i>
+          <p
+            class="font-heading text-xl font-bold text-red-400 tracking-wide uppercase">
+            Sem exceções
+          </p>
+        </div>
+        <p class="mt-6 text-gray-500 text-xs font-mono">
+          *Evita acoplamento acidental e dependências circulares
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

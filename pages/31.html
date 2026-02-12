@@ -1,0 +1,391 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Retorno Arquitetural - Timeline</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects */
+      .bg-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.1;
+        z-index: 0;
+      }
+      .glow-blue {
+        top: -100px;
+        left: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #3b82f6;
+      }
+      .glow-purple {
+        bottom: -100px;
+        right: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #7c3aed;
+      }
+      .glow-center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 300px;
+        background-color: #1e293b;
+        opacity: 0.5;
+        filter: blur(80px);
+      }
+
+      /* Timeline Styles */
+      .timeline-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 40px;
+      }
+
+      .timeline-track {
+        position: absolute;
+        top: 50%;
+        left: 100px;
+        right: 100px;
+        height: 4px;
+        background-color: #334155;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      /* Dashed overlay for future feeling */
+      .timeline-track::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          90deg,
+          transparent 50%,
+          #0f172a 50%
+        ); /* Simulating dash with solid colors */
+        background-size: 20px 100%;
+        opacity: 0.2;
+      }
+
+      .milestone {
+        position: relative;
+        z-index: 10;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 400px; /* Defines the interactable area height */
+      }
+
+      /* Connector Line to Node */
+      .milestone::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 0; /* Default hidden */
+        background-color: #475569;
+        transform: translateX(-50%);
+        transition: height 0.5s ease;
+        z-index: 5;
+      }
+
+      /* Node on the track */
+      .node {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: #0f172a;
+        border: 4px solid #475569;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        box-shadow: 0 0 0 4px rgba(15, 23, 42, 1);
+        transition: all 0.3s ease;
+      }
+
+      .milestone:hover .node {
+        transform: translate(-50%, -50%) scale(1.2);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Card Styles */
+      .card {
+        position: absolute;
+        width: 260px;
+        background-color: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 0.9;
+      }
+
+      .card:hover {
+        opacity: 1;
+        transform: translateY(-5px);
+        background-color: rgba(30, 41, 59, 0.9);
+        z-index: 30;
+      }
+
+      /* Alternating Positions */
+      .milestone:nth-child(odd) .card {
+        bottom: 60%; /* Above the line */
+      }
+      .milestone:nth-child(odd)::before {
+        height: 10%; /* Connect node to card bottom */
+        top: 40%; /* Adjust based on card position */
+        transform: translate(-50%, 0);
+      }
+
+      .milestone:nth-child(even) .card {
+        top: 60%; /* Below the line */
+      }
+
+      /* Specific Colors per Phase */
+      /* Phase 1: Blue */
+      .milestone-1 .node {
+        border-color: #3b82f6;
+      }
+      .milestone-1 .card {
+        border-top: 4px solid #3b82f6;
+      }
+      .milestone-1 .icon-box {
+        color: #3b82f6;
+        background-color: rgba(59, 130, 246, 0.1);
+      }
+
+      /* Phase 2: Cyan */
+      .milestone-2 .node {
+        border-color: #06b6d4;
+      }
+      .milestone-2 .card {
+        border-top: 4px solid #06b6d4;
+      }
+      .milestone-2 .icon-box {
+        color: #06b6d4;
+        background-color: rgba(6, 182, 212, 0.1);
+      }
+
+      /* Phase 3: Purple */
+      .milestone-3 .node {
+        border-color: #a855f7;
+      }
+      .milestone-3 .card {
+        border-top: 4px solid #a855f7;
+      }
+      .milestone-3 .icon-box {
+        color: #a855f7;
+        background-color: rgba(168, 85, 247, 0.1);
+      }
+
+      /* Phase 4: Emerald */
+      .milestone-4 .node {
+        border-color: #10b981;
+      }
+      .milestone-4 .card {
+        border-top: 4px solid #10b981;
+      }
+      .milestone-4 .icon-box {
+        color: #10b981;
+        background-color: rgba(16, 185, 129, 0.1);
+      }
+
+      .icon-box {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 16px;
+        border: 1px solid currentColor;
+      }
+
+      .phase-label {
+        font-family: "Fira Code", monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+        opacity: 0.8;
+      }
+
+      .arrow-head {
+        position: absolute;
+        right: 98px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 10px solid #334155;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background -->
+      <div class="bg-glow glow-blue"></div>
+      <div class="bg-glow glow-purple"></div>
+      <div class="bg-glow glow-center"></div>
+      <!-- Header -->
+      <div class="w-full px-16 pt-10 pb-4 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-indigo-900 text-indigo-300 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider border border-indigo-700">
+              <i class="fas fa-chart-line mr-2"></i> ROI Técnico
+            </span>
+            <span class="text-gray-400 text-sm font-mono">12. Retorno</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Timeline de Benefícios
+          </h1>
+          <p class="text-gray-400 mt-1 text-lg font-light">
+            O impacto da nova arquitetura ao longo do tempo
+          </p>
+        </div>
+      </div>
+      <!-- Timeline Content -->
+      <div class="flex-1 timeline-wrapper">
+        <div class="timeline-track"></div>
+        <div class="arrow-head"></div>
+        <!-- Milestone 1: Immediate -->
+        <div class="milestone milestone-1">
+          <div class="node"></div>
+          <div class="card">
+            <div class="phase-label text-blue-300">Imediato</div>
+            <div class="icon-box">
+              <i class="fas fa-folder-tree"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white mb-2">
+              Organização
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed">
+              Fim da "caça ao tesouro". Estrutura lógica e previsível reduz
+              tempo de navegação em 60%.
+            </p>
+          </div>
+        </div>
+        <!-- Milestone 2: Short Term -->
+        <div class="milestone milestone-2">
+          <div class="node"></div>
+          <div class="card">
+            <div class="phase-label text-cyan-300">Curto Prazo</div>
+            <div class="icon-box">
+              <i class="fas fa-code-merge"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white mb-2">
+              Menos Conflitos
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed">
+              Features isoladas significam que times diferentes não tocam nos
+              mesmos arquivos. Merge tranquilo.
+            </p>
+          </div>
+        </div>
+        <!-- Milestone 3: Medium Term -->
+        <div class="milestone milestone-3">
+          <div class="node"></div>
+          <div class="card">
+            <div class="phase-label text-purple-300">Médio Prazo</div>
+            <div class="icon-box">
+              <i class="fas fa-shield-virus"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white mb-2">
+              Estabilidade
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed">
+              Menos regressão. Alterações em uma feature não causam efeitos
+              colaterais em outras partes do app.
+            </p>
+          </div>
+        </div>
+        <!-- Milestone 4: Long Term -->
+        <div class="milestone milestone-4">
+          <div class="node"></div>
+          <div class="card">
+            <div class="phase-label text-emerald-300">Longo Prazo</div>
+            <div class="icon-box">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-white mb-2">
+              Escalabilidade Real
+            </h3>
+            <p class="text-gray-400 text-xs leading-relaxed">
+              O sistema cresce em complexidade, mas a velocidade de
+              desenvolvimento se mantém constante.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom Quote/Insight -->
+      <div class="absolute bottom-8 left-0 right-0 text-center z-20">
+        <p
+          class="text-gray-500 font-mono text-sm bg-gray-900 bg-opacity-80 inline-block px-6 py-2 rounded-full border border-gray-800">
+          <i class="fas fa-quote-left mr-2 text-gray-600"></i>
+          Arquitetura boa aparece quando o sistema cresce — e não quebra.
+          <i class="fas fa-quote-right ml-2 text-gray-600"></i>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

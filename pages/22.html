@@ -1,0 +1,300 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Benefícios - Localidade</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira+Code", monospace;
+      }
+      /* Visual accents without gradients */
+      .glow-red {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background-color: #ef4444;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.05;
+        top: 50px;
+        left: -100px;
+        z-index: 0;
+      }
+      .glow-green {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background-color: #10b981;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.05;
+        bottom: 50px;
+        right: -100px;
+        z-index: 0;
+      }
+      /* VS Code-like editor window style */
+      .code-window {
+        background-color: #1e293b;
+        border-radius: 8px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        border: 1px solid #334155;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .code-header {
+        background-color: #0f172a;
+        padding: 8px 12px;
+        border-bottom: 1px solid #334155;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .code-content {
+        padding: 16px;
+        font-family: "Fira+Code", monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .arrow-divider {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        background-color: #1e293b;
+        border: 2px solid #475569;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-red"></div>
+      <div class="glow-green"></div>
+      <!-- Header Section -->
+      <div class="w-full px-16 pt-10 pb-4 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-blue-900 text-blue-200 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider"
+              >Benefícios Técnicos</span
+            >
+            <span class="text-gray-400 text-sm font-mono">2.1 Localidade</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Localidade &amp; Colocation
+          </h1>
+          <p class="text-gray-400 mt-1 text-lg font-light">
+            Impacto direto na produtividade e carga cognitiva
+          </p>
+        </div>
+        <!-- Legend -->
+        <div class="flex gap-6">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <span class="text-gray-400 text-sm font-medium"
+              >Dispersão (Antes)</span
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="text-gray-400 text-sm font-medium"
+              >Coesão (Depois)</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Main Content 2 Columns -->
+      <div class="flex-1 flex px-16 py-6 gap-12 z-10 relative">
+        <!-- Central Arrow Divider -->
+        <div class="arrow-divider">
+          <i class="fas fa-arrow-right text-2xl text-blue-400"></i>
+        </div>
+        <!-- Left Column: Old Structure (Red/Technical) -->
+        <div class="flex-1 flex flex-col h-full">
+          <div
+            class="flex items-center gap-3 mb-4 border-b border-red-900 pb-2">
+            <i class="fas fa-project-diagram text-red-500 text-xl"></i>
+            <h3 class="font-heading text-xl font-bold text-red-100">
+              Dispersão de Código
+            </h3>
+            <span
+              class="ml-auto text-xs bg-red-900 text-red-200 px-2 py-1 rounded font-mono"
+              >Alta Carga Cognitiva</span
+            >
+          </div>
+          <div class="code-window border-red-900 border-opacity-30">
+            <div class="code-header">
+              <div class="dot bg-red-500"></div>
+              <div class="dot bg-yellow-500"></div>
+              <div class="dot bg-green-500"></div>
+              <span class="ml-2 text-gray-400 text-xs"
+                >src/ (Para editar 1 feature)</span
+              >
+            </div>
+            <div class="code-content text-gray-300 bg-gray-900 bg-opacity-40">
+              <div
+                class="flex items-center gap-2 text-red-300 mb-3 font-bold text-sm">
+                <i class="fas fa-exclamation-triangle"></i> Arquivos em 6+
+                diretórios
+              </div>
+              <p class="mb-1 text-gray-500">src/</p>
+              <p class="mb-1 pl-4 text-red-200">├── hooks/useAuth.ts</p>
+              <p class="mb-1 pl-4 text-red-200">├── screens/Login/index.tsx</p>
+              <p class="mb-1 pl-4 text-red-200">
+                ├── store/zustand/authStore.ts
+              </p>
+              <p class="mb-1 pl-4 text-red-200">├── services/api/auth.ts</p>
+              <p class="mb-1 pl-4 text-red-200">
+                ├── utils/validators/email.ts
+              </p>
+              <p class="mb-1 pl-4 text-red-200">└── types/User.ts</p>
+              <div class="mt-auto space-y-4 pt-6 border-t border-gray-800">
+                <div class="flex items-start gap-3 text-sm text-gray-400">
+                  <div
+                    class="bg-red-900 bg-opacity-50 p-1.5 rounded text-red-400 mt-0.5">
+                    <i class="fas fa-search"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-red-200">Caça ao tesouro</strong>
+                    Navegação errática entre pastas distantes
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 text-sm text-gray-400">
+                  <div
+                    class="bg-red-900 bg-opacity-50 p-1.5 rounded text-red-400 mt-0.5">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-red-200"
+                      >Context Switching</strong
+                    >
+                    Perda de foco ao alternar diretórios
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: New Structure (Green/Domain) -->
+        <div class="flex-1 flex flex-col h-full">
+          <div
+            class="flex items-center gap-3 mb-4 border-b border-green-900 pb-2">
+            <i class="fas fa-folder-open text-green-500 text-xl"></i>
+            <h3 class="font-heading text-xl font-bold text-green-100">
+              Colocation (Localidade)
+            </h3>
+            <span
+              class="ml-auto text-xs bg-green-900 text-green-200 px-2 py-1 rounded font-mono"
+              >Foco no Domínio</span
+            >
+          </div>
+          <div class="code-window border-green-900 border-opacity-30">
+            <div class="code-header">
+              <div class="dot bg-red-500"></div>
+              <div class="dot bg-yellow-500"></div>
+              <div class="dot bg-green-500"></div>
+              <span class="ml-2 text-gray-400 text-xs">src/features/auth/</span>
+            </div>
+            <div class="code-content text-gray-300 bg-gray-900 bg-opacity-40">
+              <div
+                class="flex items-center gap-2 text-green-300 mb-3 font-bold text-sm">
+                <i class="fas fa-check-circle"></i> Tudo em 1 diretório único
+              </div>
+              <p class="mb-1 text-gray-500">src/features/auth/</p>
+              <p class="mb-1 pl-4 text-green-200">├── api/</p>
+              <p class="mb-1 pl-4 text-green-200">├── hooks/</p>
+              <p class="mb-1 pl-4 text-green-200">├── screens/</p>
+              <p class="mb-1 pl-4 text-green-200">├── stores/</p>
+              <p class="mb-1 pl-4 text-green-200">
+                └── index.ts
+                <span class="text-gray-500 text-xs">// Public API</span>
+              </p>
+              <div class="mt-auto space-y-4 pt-6 border-t border-gray-800">
+                <div class="flex items-start gap-3 text-sm text-gray-400">
+                  <div
+                    class="bg-green-900 bg-opacity-50 p-1.5 rounded text-green-400 mt-0.5">
+                    <i class="fas fa-stopwatch"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-green-200"
+                      >60–70% menos navegação</strong
+                    >
+                    Encontre o código instantaneamente
+                  </div>
+                </div>
+                <div class="flex items-start gap-3 text-sm text-gray-400">
+                  <div
+                    class="bg-green-900 bg-opacity-50 p-1.5 rounded text-green-400 mt-0.5">
+                    <i class="fas fa-rocket"></i>
+                  </div>
+                  <div>
+                    <strong class="block text-green-200"
+                      >Onboarding Acelerado</strong
+                    >
+                    Entenda a feature sem conhecer todo o app
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div
+        class="absolute bottom-4 left-16 right-16 flex justify-between text-gray-600 text-xs font-mono border-t border-gray-800 pt-3">
+        <span>Métrica de Produtividade</span>
+        <span>Starbem v1.0</span>
+      </div>
+    </div>
+  </body>
+</html>

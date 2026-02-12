@@ -1,0 +1,194 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>O Legado - Estrutura Antiga</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira+Code", monospace;
+      }
+      /* Visual accents without gradients */
+      .glow-red {
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        background-color: #ef4444; /* Red 500 */
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.15;
+        top: -200px;
+        right: -200px;
+        z-index: 0;
+      }
+      .glow-dark {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background-color: #7f1d1d; /* Red 900 */
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.2;
+        bottom: -200px;
+        left: -100px;
+        z-index: 0;
+      }
+      .grid-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(#991b1b 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.1;
+        z-index: 1;
+      }
+      .glass-panel {
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+      /* Animated glitch effect simulation (static for PDF stability) */
+      .glitch-text {
+        position: relative;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+      }
+      .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #00fff9;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="grid-bg"></div>
+      <div class="glow-red"></div>
+      <div class="glow-dark"></div>
+      <!-- Content Wrapper -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center text-center w-full px-24">
+        <!-- Section Icon -->
+        <div class="mb-10 relative">
+          <div
+            class="absolute -inset-6 bg-red-600 rounded-full opacity-20 filter blur-xl animate-pulse"></div>
+          <div
+            class="relative bg-gray-900 p-6 rounded-full border-2 border-red-500 shadow-lg shadow-red-900/50">
+            <i class="fas fa-biohazard text-6xl text-red-500"></i>
+          </div>
+        </div>
+        <!-- Main Title Group -->
+        <div class="mb-8">
+          <h2
+            class="font-heading text-2xl tracking-[0.3em] text-red-400 uppercase font-bold mb-4 opacity-80">
+            Diagnóstico Técnico
+          </h2>
+          <h1
+            class="font-heading text-7xl font-black text-white leading-tight tracking-tight mb-2">
+            <span class="relative inline-block">
+              O Legado
+              <span
+                class="absolute -bottom-2 left-0 w-full h-2 bg-red-600 opacity-80 skew-x-12"></span>
+            </span>
+          </h1>
+          <div class="flex items-center justify-center gap-4 mt-2">
+            <div class="h-px w-20 bg-red-800"></div>
+            <span class="font-mono text-3xl text-gray-400 font-bold"
+              >Estrutura Antiga</span
+            >
+            <div class="h-px w-20 bg-red-800"></div>
+          </div>
+        </div>
+        <!-- Description Box -->
+        <div
+          class="glass-panel rounded-xl p-8 max-w-4xl border-l-4 border-l-red-500">
+          <p class="text-2xl text-gray-300 font-light leading-relaxed">
+            Por dentro do
+            <strong class="text-white font-bold">monólito técnico</strong>: onde
+            UI, regras de negócio e estado global se misturavam em um
+            <span class="text-red-400 font-mono italic">caos silencioso</span>.
+          </p>
+          <div
+            class="mt-6 flex justify-center gap-8 text-sm font-mono text-red-300 opacity-80">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Acoplamento Alto</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-bug"></i>
+              <span>Risco de Regressão</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-hourglass-half"></i>
+              <span>Baixa Produtividade</span>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Warning -->
+        <div class="absolute bottom-16 w-full flex justify-center opacity-40">
+          <div
+            class="flex items-center gap-4 text-red-500 font-mono text-sm tracking-widest border border-red-900 px-6 py-2 rounded bg-red-900 bg-opacity-10">
+            <i class="fas fa-terminal"></i>
+            WARNING: LEGACY CODE DETECTED
+          </div>
+        </div>
+      </div>
+      <!-- Decorative Elements -->
+      <div class="absolute top-20 right-20 opacity-10 transform rotate-12">
+        <i class="fas fa-file-code text-9xl text-red-500"></i>
+      </div>
+      <div class="absolute bottom-20 left-20 opacity-5 transform -rotate-12">
+        <i class="fas fa-network-wired text-9xl text-white"></i>
+      </div>
+    </div>
+  </body>
+</html>

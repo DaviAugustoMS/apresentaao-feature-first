@@ -1,0 +1,335 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Nova Estrutura - Feature First</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira+Code", monospace;
+      }
+
+      /* Background Ambience - Green/Blue for "Success/New" */
+      .glow-green {
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        background-color: #10b981;
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.1;
+        top: -200px;
+        right: -200px;
+        z-index: 0;
+      }
+      .glow-blue {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: #3b82f6;
+        border-radius: 50%;
+        filter: blur(160px);
+        opacity: 0.06;
+        bottom: -100px;
+        left: -100px;
+        z-index: 0;
+      }
+
+      /* Code Window Styles */
+      .code-window {
+        background-color: #1e293b;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.6);
+        border: 1px solid #334155;
+        overflow: hidden;
+        font-size: 1.1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .code-header {
+        background-color: #0f172a;
+        padding: 12px 16px;
+        border-bottom: 1px solid #334155;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+      .code-body {
+        padding: 30px;
+        font-family: "Fira+Code", monospace;
+        color: #e2e8f0;
+        line-height: 2.2;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Syntax Highlighting */
+      .comment {
+        color: #94a3b8;
+        font-style: italic;
+        font-size: 0.85em;
+        margin-left: 12px;
+      }
+      .folder {
+        color: #34d399;
+        font-weight: 600;
+      } /* Emerald-400 */
+      .root-folder {
+        color: #60a5fa;
+        font-weight: 700;
+      } /* Blue-400 */
+      .tree-lines {
+        color: #475569;
+        margin-right: 8px;
+      }
+
+      /* Principles Card Styles */
+      .principles-card {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 12px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .principles-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: #10b981;
+      }
+
+      .feature-tag {
+        font-family: "Fira+Code", monospace;
+        background: rgba(16, 185, 129, 0.15);
+        color: #6ee7b7;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.85em;
+      }
+
+      /* Golden Rule Box */
+      .golden-rule-box {
+        margin-top: auto;
+        background: linear-gradient(
+          135deg,
+          rgba(245, 158, 11, 0.1),
+          rgba(245, 158, 11, 0.05)
+        );
+        border: 1px solid rgba(245, 158, 11, 0.5);
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+      }
+      .golden-icon {
+        position: absolute;
+        top: -14px;
+        right: 20px;
+        background: #0f172a;
+        padding: 0 8px;
+        color: #fbbf24;
+        font-size: 1.4rem;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <div class="glow-green"></div>
+      <div class="glow-blue"></div>
+      <!-- Header -->
+      <div
+        class="w-full px-16 pt-10 pb-6 z-10 flex justify-between items-end border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-emerald-900 text-emerald-200 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider"
+              >Feature First</span
+            >
+            <span class="text-gray-400 text-sm font-mono"
+              >4. Nova Estrutura</span
+            >
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Arquitetura Orientada a Domínio
+          </h1>
+        </div>
+        <div class="text-right">
+          <i class="fas fa-sitemap text-4xl text-emerald-500 opacity-80"></i>
+        </div>
+      </div>
+      <!-- Content Layout -->
+      <div
+        class="flex flex-1 px-16 py-10 gap-16 items-start justify-center z-10">
+        <!-- Left: Code Tree Visual -->
+        <div class="w-1/2 h-full pb-4">
+          <div class="code-window">
+            <div class="code-header">
+              <div class="dot bg-red-500"></div>
+              <div class="dot bg-yellow-500"></div>
+              <div class="dot bg-green-500"></div>
+              <span
+                class="ml-4 text-gray-500 font-mono text-sm flex items-center gap-2">
+                <i class="fas fa-code-branch text-xs"></i> starbem-v2
+              </span>
+            </div>
+            <div class="code-body">
+              <div class="flex items-center">
+                <span class="root-folder">src/features/</span>
+              </div>
+              <div
+                class="flex pl-6 items-center hover:bg-gray-800 rounded px-2 -ml-2 transition-colors">
+                <span class="tree-lines">├──</span>
+                <span class="folder">auth/</span>
+                <span class="comment">// Login, Registro, MFA</span>
+              </div>
+              <div
+                class="flex pl-6 items-center hover:bg-gray-800 rounded px-2 -ml-2 transition-colors">
+                <span class="tree-lines">├──</span>
+                <span class="folder">buyProduct/</span>
+                <span class="comment">// Sacola, Wallet, Pix</span>
+              </div>
+              <div
+                class="flex pl-6 items-center hover:bg-gray-800 rounded px-2 -ml-2 transition-colors">
+                <span class="tree-lines">├──</span>
+                <span class="folder">feelings/</span>
+                <span class="comment">// Diário, Clean Arch</span>
+              </div>
+              <div
+                class="flex pl-6 items-center hover:bg-gray-800 rounded px-2 -ml-2 transition-colors">
+                <span class="tree-lines">└──</span>
+                <span class="folder">schedule/</span>
+                <span class="comment">// Agendamento (WIP)</span>
+              </div>
+              <div
+                class="mt-6 pt-4 border-t border-gray-700 flex flex-col gap-2">
+                <span class="text-gray-500 text-sm font-mono"
+                  >// Nota: Cada pasta contém tudo</span
+                >
+                <span class="text-gray-500 text-sm font-mono"
+                  >// que a feature precisa para existir.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Principles & Golden Rule -->
+        <div class="w-1/2 flex flex-col gap-6 pt-2 h-full pb-4">
+          <div class="principles-card">
+            <h3
+              class="font-heading text-2xl font-bold text-white mb-6 flex items-center gap-3">
+              <i class="fas fa-cubes text-emerald-400"></i> Benefícios
+              Estruturais
+            </h3>
+            <div class="space-y-6 flex-grow">
+              <!-- Item 1 -->
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-900 bg-opacity-40 flex items-center justify-center text-emerald-400">
+                  <i class="fas fa-box-open"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-lg text-white mb-1">
+                    Encapsulamento Real
+                  </p>
+                  <p class="text-gray-400 text-sm leading-relaxed">
+                    Uma feature pode ser removida deletando apenas uma pasta.
+                    Sem "caça ao tesouro".
+                  </p>
+                </div>
+              </div>
+              <!-- Item 2 -->
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-900 bg-opacity-40 flex items-center justify-center text-emerald-400">
+                  <i class="fas fa-map-location-dot"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-lg text-white mb-1">
+                    Colocation (Localidade)
+                  </p>
+                  <p class="text-gray-400 text-sm leading-relaxed">
+                    Tudo que muda junto, fica junto. O código relacionado está a
+                    1 clique de distância.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Golden Rule Box -->
+            <div class="golden-rule-box">
+              <div class="golden-icon"><i class="fas fa-crown"></i></div>
+              <h4
+                class="font-heading text-amber-400 font-bold uppercase text-xs tracking-widest mb-2">
+                Regra de Ouro
+              </h4>
+              <p class="text-white font-bold text-lg leading-snug">
+                "Se for específico da feature
+                <span class="text-emerald-400">→</span> fica dentro da feature."
+              </p>
+              <p class="text-white font-bold text-lg leading-snug mt-1">
+                "Se for compartilhado
+                <span class="text-emerald-400">→</span> src/shared/"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="absolute bottom-6 right-16 text-gray-600 text-xs font-mono">
+        src/structure/feature_first_manifesto.md
+      </div>
+    </div>
+  </body>
+</html>

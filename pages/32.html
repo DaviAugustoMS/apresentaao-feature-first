@@ -1,0 +1,308 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Conclusão - Starbem</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;500;700&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Ambience */
+      .ambient-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .blob-purple {
+        background-color: #7c3aed;
+        width: 600px;
+        height: 600px;
+        top: -200px;
+        left: -100px;
+      }
+      .blob-blue {
+        background-color: #3b82f6;
+        width: 500px;
+        height: 500px;
+        bottom: -100px;
+        right: -100px;
+      }
+      .blob-green {
+        background-color: #10b981;
+        width: 400px;
+        height: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.1;
+      }
+
+      /* Content Layout */
+      .content-wrapper {
+        z-index: 10;
+        width: 100%;
+        padding: 0 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        height: 100%;
+      }
+
+      /* Left Column */
+      .text-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Right Column (Visual) */
+      .visual-column {
+        flex: 0 0 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Icon Container */
+      .rocket-icon-container {
+        width: 70px;
+        height: 70px;
+        background-color: rgba(139, 92, 246, 0.1);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+      }
+
+      /* Cards Styling */
+      .conclusion-card {
+        background-color: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        padding: 24px;
+        width: 100%;
+        margin-bottom: 20px;
+        border-left: 4px solid #8b5cf6;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .conclusion-card:hover {
+        transform: translateX(10px);
+        background-color: rgba(30, 41, 59, 0.8);
+      }
+
+      .card-structural {
+        border-left-color: #3b82f6;
+      } /* Blue */
+      .card-cta {
+        border-left-color: #f59e0b;
+      } /* Amber */
+      .card-steps {
+        border-left-color: #10b981;
+      } /* Green */
+
+      /* Meme/Image Container */
+      .meme-frame {
+        position: relative;
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transform: rotate(2deg);
+        transition: transform 0.3s ease;
+        background-color: #1e293b;
+      }
+
+      .meme-frame:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+
+      .meme-placeholder {
+        width: 100%;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Ambient Blobs -->
+      <div class="ambient-blob blob-purple"></div>
+      <div class="ambient-blob blob-blue"></div>
+      <div class="ambient-blob blob-green"></div>
+      <div class="content-wrapper">
+        <!-- Left Column: Content -->
+        <div class="text-column">
+          <!-- Header -->
+          <div class="rocket-icon-container">
+            <i class="fas fa-rocket text-3xl text-purple-400"></i>
+          </div>
+          <h1
+            class="font-heading text-5xl font-black text-white tracking-tight mb-2 leading-tight">
+            Bora escalar <br />
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400"
+              >sem drama!</span
+            >
+            🚀
+          </h1>
+          <p class="text-lg text-gray-400 mb-8 font-light">
+            A migração para Feature-First não é cosmética.
+            <strong class="text-white">É estrutural.</strong>
+          </p>
+          <!-- Key Points Cards -->
+          <div class="conclusion-card card-structural">
+            <div class="flex items-start gap-4">
+              <div class="mt-1 text-blue-400">
+                <i class="fas fa-cubes fa-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-heading text-lg font-bold text-white mb-1">
+                  Impacto Real
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Estrutura preparada para o sistema crescer sem quebrar.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="conclusion-card card-cta">
+            <div class="flex items-start gap-4">
+              <div class="mt-1 text-amber-400">
+                <i class="fas fa-bullhorn fa-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-heading text-lg font-bold text-white mb-1">
+                  Call to Action
+                </h3>
+                <p class="text-sm text-gray-300">
+                  Padronizar novas features &amp; Manter Public API viva.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="conclusion-card card-steps">
+            <div class="flex items-start gap-4">
+              <div class="mt-1 text-green-400">
+                <i class="fas fa-list-check fa-lg"></i>
+              </div>
+              <div>
+                <h3 class="font-heading text-lg font-bold text-white mb-1">
+                  Próximos Passos
+                </h3>
+                <div class="flex gap-3 mt-2">
+                  <span
+                    class="bg-green-900 bg-opacity-40 text-green-300 text-xs px-2 py-1 rounded border border-green-800"
+                    >Priorizar Schedule</span
+                  >
+                  <span
+                    class="bg-green-900 bg-opacity-40 text-green-300 text-xs px-2 py-1 rounded border border-green-800"
+                    >PRs Incrementais</span
+                  >
+                  <span
+                    class="bg-green-900 bg-opacity-40 text-green-300 text-xs px-2 py-1 rounded border border-green-800"
+                    >Medir KPIs</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Visual/Meme -->
+        <div class="visual-column">
+          <div class="meme-frame">
+            <!-- Simulating the 'This is Fine' meme structure with CSS/HTML for reliability -->
+            <div class="meme-placeholder relative">
+              <img
+                alt="This is fine meme"
+                src="https://page.gensparksite.com/slides_images/a88d6366f172a58f657355df0ae3a42f.png"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  opacity: 0.3;
+                  mix-blend-mode: overlay;
+                " />
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                <i
+                  class="fas fa-mug-hot text-6xl text-amber-500 mb-4 animate-pulse"></i>
+                <h3 class="font-heading text-2xl font-bold text-white mb-2">
+                  "This is fine."
+                </h3>
+                <p class="text-gray-400 text-sm font-mono">
+                  (Porque agora a arquitetura aguenta)
+                </p>
+              </div>
+              <!-- Fire effects (CSS only) -->
+              <div
+                class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 opacity-50"></div>
+            </div>
+            <div class="bg-gray-900 p-4 border-t border-gray-800">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold">
+                  SB
+                </div>
+                <div class="flex-1">
+                  <div class="h-2 w-24 bg-gray-700 rounded mb-1"></div>
+                  <div class="h-2 w-16 bg-gray-700 rounded"></div>
+                </div>
+                <i class="fas fa-heart text-red-500"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

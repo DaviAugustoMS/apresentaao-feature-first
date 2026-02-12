@@ -1,0 +1,372 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fluxo Arquitetural - Feelings</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;500;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Accents */
+      .bg-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.08;
+        z-index: 0;
+      }
+      .glow-blue {
+        width: 500px;
+        height: 500px;
+        background-color: #3b82f6;
+        top: -100px;
+        left: -100px;
+      }
+      .glow-emerald {
+        width: 400px;
+        height: 400px;
+        background-color: #10b981;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.12;
+      }
+      .glow-orange {
+        width: 500px;
+        height: 500px;
+        background-color: #f59e0b;
+        bottom: -100px;
+        right: -100px;
+      }
+
+      /* Flow Diagram Styles */
+      .layer-card {
+        background-color: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+        border-radius: 16px;
+        padding: 24px;
+        width: 280px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        z-index: 10;
+      }
+
+      .layer-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      }
+
+      .layer-presentation {
+        border-top: 4px solid #60a5fa;
+      }
+      .layer-domain {
+        border-top: 4px solid #10b981;
+        background-color: rgba(6, 78, 59, 0.3);
+        border-color: rgba(16, 185, 129, 0.3);
+      }
+      .layer-data {
+        border-top: 4px solid #f59e0b;
+      }
+
+      .layer-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      }
+
+      .list-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 8px;
+        display: inline-block;
+      }
+
+      /* Arrow Connector */
+      .connector {
+        flex: 1;
+        height: 2px;
+        background-color: #475569;
+        position: relative;
+        margin: 0 10px;
+        opacity: 0.5;
+      }
+      .connector::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 8px solid #475569;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      .connector-label {
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        font-family: "Fira Code", monospace;
+        color: #94a3b8;
+        background-color: #0f172a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid #334155;
+      }
+
+      /* Bottom Cards */
+      .info-card {
+        background-color: rgba(15, 23, 42, 0.6);
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="bg-glow glow-blue"></div>
+      <div class="bg-glow glow-emerald"></div>
+      <div class="bg-glow glow-orange"></div>
+      <!-- Header Section -->
+      <div
+        class="w-full px-16 pt-10 pb-4 z-10 flex justify-between items-end border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-emerald-900 text-emerald-300 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider border border-emerald-800"
+              >Architecture</span
+            >
+            <span class="text-gray-400 text-sm font-mono">5.3 Feelings</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Fluxo Arquitetural
+          </h1>
+          <p class="text-gray-400 mt-1 text-lg font-light">
+            Clean Architecture: Presentation → Domain → Data
+          </p>
+        </div>
+        <div class="text-right">
+          <i
+            class="fas fa-layer-group text-4xl text-emerald-500 opacity-80"></i>
+        </div>
+      </div>
+      <!-- Main Content: Flow Diagram -->
+      <div class="flex-1 px-16 py-8 flex flex-col justify-center z-10">
+        <!-- The Flow -->
+        <div class="flex items-center justify-between mb-12 px-4">
+          <!-- Layer 1: Presentation -->
+          <div class="layer-card layer-presentation">
+            <div
+              class="layer-icon bg-blue-900 text-blue-400 border border-blue-700">
+              <i class="fas fa-mobile-screen"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-1">
+              Presentation
+            </h3>
+            <p class="text-blue-300 text-xs font-mono mb-4">
+              React Native / UI
+            </p>
+            <div class="w-full text-left pl-4 space-y-2">
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-blue-500"></span>Screens
+              </p>
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-blue-500"></span>ViewModels
+              </p>
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-blue-500"></span>Stores (Zustand)
+              </p>
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-blue-500"></span>Hooks
+              </p>
+            </div>
+            <div class="absolute bottom-4 text-xs text-gray-500 font-mono">
+              Input / Output
+            </div>
+          </div>
+          <!-- Connector 1 -->
+          <div class="connector">
+            <div class="connector-label">Calls UseCases</div>
+          </div>
+          <!-- Layer 2: Domain (Core) -->
+          <div
+            class="layer-card layer-domain transform scale-105 shadow-xl border-emerald-500">
+            <div
+              class="absolute -top-3 -right-3 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">
+              CORE
+            </div>
+            <div
+              class="layer-icon bg-emerald-900 text-emerald-400 border border-emerald-700">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-1">
+              Domain
+            </h3>
+            <p class="text-emerald-300 text-xs font-mono mb-4">
+              Pure TypeScript
+            </p>
+            <div class="w-full text-left pl-4 space-y-2">
+              <p class="text-sm text-gray-200 flex items-center font-semibold">
+                <span class="list-dot bg-emerald-500"></span>Entities
+              </p>
+              <p class="text-sm text-gray-200 flex items-center font-semibold">
+                <span class="list-dot bg-emerald-500"></span>UseCases
+              </p>
+              <p class="text-sm text-gray-200 flex items-center">
+                <span class="list-dot bg-emerald-500"></span>Repository
+                Interfaces
+              </p>
+              <p
+                class="text-sm text-gray-400 flex items-center italic text-xs mt-2">
+                <i class="fas fa-ban mr-1 text-red-400"></i> Sem React / API
+              </p>
+            </div>
+            <div
+              class="absolute bottom-4 text-xs text-emerald-400 font-mono font-bold">
+              Regra de Negócio
+            </div>
+          </div>
+          <!-- Connector 2 -->
+          <div class="connector">
+            <div class="connector-label">Implements Interface</div>
+          </div>
+          <!-- Layer 3: Data -->
+          <div class="layer-card layer-data">
+            <div
+              class="layer-icon bg-amber-900 text-amber-400 border border-amber-700">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-1">Data</h3>
+            <p class="text-amber-300 text-xs font-mono mb-4">Infrastructure</p>
+            <div class="w-full text-left pl-4 space-y-2">
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-amber-500"></span>Repository Impl.
+              </p>
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-amber-500"></span>Data Sources
+              </p>
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-amber-500"></span>DTOs
+              </p>
+              <p class="text-sm text-gray-300 flex items-center">
+                <span class="list-dot bg-amber-500"></span>Mappers
+              </p>
+            </div>
+            <div class="absolute bottom-4 text-xs text-gray-500 font-mono">
+              External World
+            </div>
+          </div>
+        </div>
+        <!-- Principles & Benefits Section -->
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Principle 1 -->
+          <div class="info-card flex items-start gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-emerald-900 flex items-center justify-center text-emerald-400 shrink-0">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <div>
+              <h4 class="text-emerald-400 font-bold text-sm uppercase mb-1">
+                Domain Isolado
+              </h4>
+              <p class="text-gray-400 text-xs leading-relaxed">
+                A camada de domínio não conhece nada externo (React, HTTP, DB).
+                Isso a torna imune a mudanças de framework.
+              </p>
+            </div>
+          </div>
+          <!-- Principle 2 -->
+          <div class="info-card flex items-start gap-3">
+            <div
+              class="w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-purple-400 shrink-0">
+              <i class="fas fa-right-left"></i>
+            </div>
+            <div>
+              <h4 class="text-purple-400 font-bold text-sm uppercase mb-1">
+                Conversão Explícita
+              </h4>
+              <p class="text-gray-400 text-xs leading-relaxed">
+                Dados externos (DTOs) são convertidos para Entidades de domínio
+                via
+                <span class="font-mono text-xs bg-gray-800 px-1 rounded"
+                  >Mappers</span
+                >. O domínio nunca vê o JSON cru.
+              </p>
+            </div>
+          </div>
+          <!-- Benefit -->
+          <div
+            class="info-card flex items-start gap-3 border-emerald-900 bg-emerald-900 bg-opacity-10">
+            <div
+              class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-blue-400 shrink-0">
+              <i class="fas fa-vial"></i>
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-sm uppercase mb-1">
+                Testabilidade Máxima
+              </h4>
+              <p class="text-gray-300 text-xs leading-relaxed">
+                Regras de negócio 100% testáveis com testes unitários rápidos,
+                sem necessidade de emuladores ou React.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="absolute bottom-4 right-16 text-gray-600 text-xs font-mono">
+        src/features/feelings/architecture.png
+      </div>
+    </div>
+  </body>
+</html>

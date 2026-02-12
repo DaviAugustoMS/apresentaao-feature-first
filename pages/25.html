@@ -1,0 +1,361 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Impacto no Desenvolvimento</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      /* Font Utilities */
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .glow-top-right {
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #10b981; /* Emerald for success */
+      }
+      .glow-bottom-left {
+        bottom: -100px;
+        left: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #3b82f6; /* Blue for tech */
+      }
+
+      /* Table Styling */
+      .table-container {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #334155;
+        background-color: rgba(30, 41, 59, 0.5); /* Slate 800 with opacity */
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      .table-header {
+        background-color: #1e293b; /* Slate 800 */
+        border-bottom: 2px solid #334155;
+      }
+
+      .table-row {
+        border-bottom: 1px solid #334155;
+        transition: background-color 0.2s;
+      }
+
+      .table-row:last-child {
+        border-bottom: none;
+      }
+
+      .table-row:hover {
+        background-color: rgba(51, 65, 85, 0.5);
+      }
+
+      /* Status Indicators & Badges */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-width: 100px;
+      }
+
+      .badge-legacy {
+        background-color: rgba(239, 68, 68, 0.15);
+        color: #fca5a5;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+
+      .badge-new {
+        background-color: rgba(16, 185, 129, 0.15);
+        color: #6ee7b7;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      .comparison-arrow {
+        color: #94a3b8;
+        font-size: 0.8rem;
+        margin: 0 10px;
+      }
+
+      .icon-box {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: rgba(15, 23, 42, 0.6);
+        border: 1px solid #334155;
+        font-size: 1.1rem;
+      }
+
+      .metric-value {
+        font-family: "Fira Code", monospace;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-effect glow-top-right"></div>
+      <div class="glow-effect glow-bottom-left"></div>
+      <!-- Header -->
+      <div class="px-16 pt-12 pb-6 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              <i class="fas fa-chart-bar mr-2"></i> KPIs Técnicos
+            </span>
+            <span class="text-gray-400 text-sm font-mono">8.0 Métricas</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Impacto no Desenvolvimento
+          </h1>
+          <p class="text-gray-400 mt-2 text-lg font-light">
+            Comparativo direto:
+            <span class="text-red-400 font-medium">Legado Técnico</span> vs
+            <span class="text-green-400 font-medium">Feature-First</span>
+          </p>
+        </div>
+        <!-- Metric Card -->
+        <div
+          class="bg-slate-800 bg-opacity-60 border border-slate-700 p-4 rounded-xl backdrop-blur-sm flex items-center gap-4">
+          <div class="text-right">
+            <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">
+              Refatorabilidade
+            </p>
+            <p class="text-2xl font-bold text-green-400">Alta 🚀</p>
+          </div>
+          <div
+            class="h-10 w-10 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center text-green-400">
+            <i class="fas fa-wrench"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content: Comparison Table -->
+      <div class="flex-1 px-16 py-2 z-10 relative flex flex-col justify-center">
+        <div class="table-container backdrop-blur-md">
+          <!-- Table Header -->
+          <div
+            class="table-header grid grid-cols-12 px-6 py-4 text-gray-400 text-xs font-bold uppercase tracking-wider font-heading">
+            <div class="col-span-4">Métrica</div>
+            <div class="col-span-3 text-center">Legado (Antes)</div>
+            <div class="col-span-1 text-center"></div>
+            <div class="col-span-3 text-center">Feature-First (Depois)</div>
+            <div class="col-span-1 text-right">Evolução</div>
+          </div>
+          <!-- Row 1: Diretórios -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-4 flex items-center gap-4">
+              <div class="icon-box text-blue-400">
+                <i class="fas fa-folder-tree"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Diretórios por Feature
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Fragmentação de arquivos
+                </p>
+              </div>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <div class="badge badge-legacy metric-value">6+ Pastas</div>
+            </div>
+            <div class="col-span-1 flex justify-center">
+              <i class="fas fa-arrow-right text-gray-600"></i>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <div class="badge badge-new metric-value">1 Pasta</div>
+            </div>
+            <div class="col-span-1 text-right">
+              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            </div>
+          </div>
+          <!-- Row 2: Hooks Globais -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-4 flex items-center gap-4">
+              <div class="icon-box text-purple-400">
+                <i class="fas fa-bezier-curve"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">Hooks Globais</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Lógica compartilhada arriscada
+                </p>
+              </div>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <div class="badge badge-legacy metric-value">44 Arquivos</div>
+            </div>
+            <div class="col-span-1 flex justify-center">
+              <i class="fas fa-arrow-right text-gray-600"></i>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <div class="badge badge-new metric-value">Por Feature</div>
+            </div>
+            <div class="col-span-1 text-right">
+              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            </div>
+          </div>
+          <!-- Row 3: Stores Globais -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-4 flex items-center gap-4">
+              <div class="icon-box text-yellow-400">
+                <i class="fas fa-database"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">Stores Globais</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Estado monolítico (Zustand)
+                </p>
+              </div>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <div class="badge badge-legacy metric-value">29 Stores</div>
+            </div>
+            <div class="col-span-1 flex justify-center">
+              <i class="fas fa-arrow-right text-gray-600"></i>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <div class="badge badge-new metric-value">Por Feature</div>
+            </div>
+            <div class="col-span-1 text-right">
+              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            </div>
+          </div>
+          <!-- Row 4: Acoplamento -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-4 flex items-center gap-4">
+              <div class="icon-box text-red-400">
+                <i class="fas fa-link"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Nível de Acoplamento
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Dependência entre módulos
+                </p>
+              </div>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <span
+                class="text-red-400 font-bold uppercase tracking-wide text-sm"
+                >Alto</span
+              >
+            </div>
+            <div class="col-span-1 flex justify-center">
+              <i class="fas fa-arrow-right text-gray-600"></i>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <span
+                class="text-green-400 font-bold uppercase tracking-wide text-sm"
+                >Baixo</span
+              >
+            </div>
+            <div class="col-span-1 text-right">
+              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            </div>
+          </div>
+          <!-- Row 5: Refatorabilidade -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-4 flex items-center gap-4">
+              <div class="icon-box text-teal-400">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Refatorabilidade
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Facilidade de manutenção
+                </p>
+              </div>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <span
+                class="text-red-400 font-bold uppercase tracking-wide text-sm"
+                >Baixa</span
+              >
+            </div>
+            <div class="col-span-1 flex justify-center">
+              <i class="fas fa-arrow-right text-gray-600"></i>
+            </div>
+            <div class="col-span-3 flex justify-center">
+              <span
+                class="text-green-400 font-bold uppercase tracking-wide text-sm"
+                >Alta</span
+              >
+            </div>
+            <div class="col-span-1 text-right">
+              <i class="fas fa-check-circle text-green-500 text-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer Info -->
+      <div
+        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        <div>
+          <i class="fas fa-info-circle mr-2"></i>
+          Dados extraídos da análise estática do repositório
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="h-2 w-2 rounded-full bg-red-500"></div>
+          Legado
+          <div class="h-2 w-2 rounded-full bg-green-500 ml-2"></div>
+          Feature-First
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

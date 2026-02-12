@@ -1,0 +1,290 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Problemas Identificados</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      /* Font Utilities */
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects (No Gradients) */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .glow-top-right {
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #ef4444; /* Red for problems */
+      }
+      .glow-bottom-left {
+        bottom: -100px;
+        left: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #7c3aed;
+      }
+
+      /* Table Styling */
+      .table-container {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #334155;
+        background-color: rgba(30, 41, 59, 0.5); /* Slate 800 with opacity */
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      .table-header {
+        background-color: #1e293b; /* Slate 800 */
+        border-bottom: 2px solid #334155;
+      }
+
+      .table-row {
+        border-bottom: 1px solid #334155;
+        transition: background-color 0.2s;
+      }
+
+      .table-row:last-child {
+        border-bottom: none;
+      }
+
+      .table-row:hover {
+        background-color: rgba(51, 65, 85, 0.5);
+      }
+
+      /* Status Indicators */
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .badge-high {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+
+      .badge-critical {
+        background-color: rgba(185, 28, 28, 0.3);
+        color: #fecaca;
+        border: 1px solid rgba(185, 28, 28, 0.4);
+      }
+
+      .icon-box {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background-color: rgba(15, 23, 42, 0.6);
+        border: 1px solid #334155;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-effect glow-top-right"></div>
+      <div class="glow-effect glow-bottom-left"></div>
+      <!-- Header -->
+      <div class="px-16 pt-12 pb-6 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-red-900 bg-opacity-40 text-red-300 border border-red-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              <i class="fas fa-bug mr-2"></i> Diagnóstico
+            </span>
+            <span class="text-gray-400 text-sm font-mono">1.2 Análise</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Problemas Identificados
+          </h1>
+          <p class="text-gray-400 mt-2 text-lg font-light">
+            Impactos diretos da arquitetura legada na produtividade e qualidade
+          </p>
+        </div>
+        <!-- Metric Card -->
+        <div
+          class="bg-slate-800 bg-opacity-60 border border-slate-700 p-4 rounded-xl backdrop-blur-sm flex items-center gap-4">
+          <div class="text-right">
+            <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">
+              Acoplamento
+            </p>
+            <p class="text-2xl font-bold text-red-400">Crítico</p>
+          </div>
+          <div
+            class="h-10 w-10 rounded-full bg-red-500 bg-opacity-20 flex items-center justify-center text-red-400">
+            <i class="fas fa-chart-line"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content: Table -->
+      <div class="flex-1 px-16 py-4 z-10 relative flex flex-col justify-center">
+        <div class="table-container backdrop-blur-md">
+          <!-- Table Header -->
+          <div
+            class="table-header grid grid-cols-12 px-6 py-4 text-gray-400 text-xs font-bold uppercase tracking-wider font-heading">
+            <div class="col-span-5">Problema Arquitetural</div>
+            <div class="col-span-5">Impacto no Desenvolvimento</div>
+            <div class="col-span-2 text-center">Severidade</div>
+          </div>
+          <!-- Row 1 -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-blue-400">
+                <i class="fas fa-folder-open"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Código Espalhado
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Lógica da mesma feature em 6+ diretórios
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Alto tempo de navegação e contexto perdido ao alternar arquivos.
+                Dificuldade de onboarding.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-high">Alto</span>
+            </div>
+          </div>
+          <!-- Row 2 -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-purple-400">
+                <i class="fas fa-database"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Stores Globais Misturadas
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Zustand stores monolíticas
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Forte acoplamento entre módulos. Alterar uma store afeta
+                múltiplas áreas do app inesperadamente.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-critical">Crítico</span>
+            </div>
+          </div>
+          <!-- Row 3 -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-yellow-400">
+                <i class="fas fa-file-code"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">Hooks Gigantes</p>
+                <p class="text-xs text-gray-500 mt-1">
+                  "God Files" com &gt;1000 linhas
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Baixíssima testabilidade e legibilidade. Mistura de regras de
+                negócio, chamadas de API e estado local.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-high">Alto</span>
+            </div>
+          </div>
+          <!-- Row 4 -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-red-400">
+                <i class="fas fa-code-branch"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Conflitos de Merge
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Múltiplos devs editando mesmos arquivos
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Perda constante de produtividade resolvendo conflitos em
+                arquivos compartilhados (hooks/stores).
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-high">Alto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer Info -->
+      <div
+        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        <div>
+          <i class="fas fa-info-circle mr-2"></i>
+          Dados baseados na análise do código legado v1.0
+        </div>
+        <div>
+          Total de Issues: <span class="text-white font-bold">5 Críticas</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

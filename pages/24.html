@@ -1,0 +1,299 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Benefícios de Performance e DX</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      /* Font Utilities */
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .glow-top-right {
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #10b981; /* Emerald/Green for success */
+      }
+      .glow-bottom-left {
+        bottom: -100px;
+        left: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #3b82f6; /* Blue for tech */
+      }
+
+      /* Table Styling */
+      .table-container {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #334155;
+        background-color: rgba(30, 41, 59, 0.5); /* Slate 800 with opacity */
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      .table-header {
+        background-color: #1e293b; /* Slate 800 */
+        border-bottom: 2px solid #334155;
+      }
+
+      .table-row {
+        border-bottom: 1px solid #334155;
+        transition: background-color 0.2s;
+      }
+
+      .table-row:last-child {
+        border-bottom: none;
+      }
+
+      .table-row:hover {
+        background-color: rgba(51, 65, 85, 0.5);
+      }
+
+      /* Status Indicators */
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .badge-success {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: #6ee7b7;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      .badge-info {
+        background-color: rgba(59, 130, 246, 0.2);
+        color: #93c5fd;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+
+      .badge-purple {
+        background-color: rgba(139, 92, 246, 0.2);
+        color: #c4b5fd;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+      }
+
+      .icon-box {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background-color: rgba(15, 23, 42, 0.6);
+        border: 1px solid #334155;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-effect glow-top-right"></div>
+      <div class="glow-effect glow-bottom-left"></div>
+      <!-- Header -->
+      <div class="px-16 pt-12 pb-6 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-green-900 bg-opacity-40 text-green-300 border border-green-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              <i class="fas fa-rocket mr-2"></i> Benefícios
+            </span>
+            <span class="text-gray-400 text-sm font-mono"
+              >7.5 - 7.7 DX &amp; Performance</span
+            >
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Performance, Conflitos e DX
+          </h1>
+          <p class="text-gray-400 mt-2 text-lg font-light">
+            Impacto direto na experiência do desenvolvedor e do usuário final
+          </p>
+        </div>
+        <!-- Metric Card -->
+        <div
+          class="bg-slate-800 bg-opacity-60 border border-slate-700 p-4 rounded-xl backdrop-blur-sm flex items-center gap-4">
+          <div class="text-right">
+            <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">
+              Conflitos de Merge
+            </p>
+            <p class="text-2xl font-bold text-green-400">-80%</p>
+          </div>
+          <div
+            class="h-10 w-10 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center text-green-400">
+            <i class="fas fa-arrow-down"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content: Table -->
+      <div class="flex-1 px-16 py-4 z-10 relative flex flex-col justify-center">
+        <div class="table-container backdrop-blur-md">
+          <!-- Table Header -->
+          <div
+            class="table-header grid grid-cols-12 px-6 py-4 text-gray-400 text-xs font-bold uppercase tracking-wider font-heading">
+            <div class="col-span-5">Melhoria Técnica</div>
+            <div class="col-span-5">Detalhes &amp; Impacto</div>
+            <div class="col-span-2 text-center">Ganho</div>
+          </div>
+          <!-- Row 1: React Query -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-yellow-400">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  React Query (Server State)
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Substitui useEffects manuais
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Cache automático, deduplicação de requests, retry e invalidação
+                inteligente. UX muito mais fluida e responsiva.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-success">Fluidez</span>
+            </div>
+          </div>
+          <!-- Row 2: Conflicts -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-green-400">
+                <i class="fas fa-code-merge"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Redução de Conflitos
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  Colocation e isolamento
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Cada feature vive em seu diretório. Devs trabalhando em features
+                diferentes raramente tocam nos mesmos arquivos.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-success">Alto</span>
+            </div>
+          </div>
+          <!-- Row 3: Documentation -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-blue-400">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Documentação por Feature
+                </p>
+                <p class="text-xs text-gray-500 mt-1">README, RULES, TAGS</p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                A documentação vive junto do código. Menos troca de contexto
+                para entender regras de negócio específicas.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-info">Clareza</span>
+            </div>
+          </div>
+          <!-- Row 4: Removal -->
+          <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+            <div class="col-span-5 flex items-center gap-4">
+              <div class="icon-box text-purple-400">
+                <i class="fas fa-trash-alt"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-white text-base">
+                  Remoção Simplificada
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                  rm -rf src/features/xyz
+                </p>
+              </div>
+            </div>
+            <div class="col-span-5 pr-8">
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Desacoplamento real permite remover features inteiras sem caça
+                ao tesouro por arquivos espalhados.
+              </p>
+            </div>
+            <div class="col-span-2 flex justify-center">
+              <span class="status-badge badge-purple">Simples</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer Info -->
+      <div
+        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        <div>
+          <i class="fas fa-check-circle mr-2"></i>
+          Melhoria contínua na qualidade de vida do desenvolvedor (DX)
+        </div>
+        <div>
+          Estimativa:
+          <span class="text-white font-bold">Produtividade +30%</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

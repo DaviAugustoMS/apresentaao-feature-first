@@ -1,0 +1,335 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Auth - Public API</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira+Code", monospace;
+      }
+
+      /* Background Ambience - Purple for Feature-First/Modern */
+      .glow-purple {
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        background-color: #8b5cf6;
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.1;
+        top: -250px;
+        right: -250px;
+        z-index: 0;
+      }
+      .glow-blue {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background-color: #3b82f6;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.05;
+        bottom: -100px;
+        left: -100px;
+        z-index: 0;
+      }
+
+      /* Code Window Styles */
+      .code-window {
+        background-color: #1e293b;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.6);
+        border: 1px solid #334155;
+        overflow: hidden;
+        font-size: 1.05rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .code-header {
+        background-color: #0f172a;
+        padding: 12px 16px;
+        border-bottom: 1px solid #334155;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+      .code-body {
+        padding: 30px;
+        font-family: "Fira+Code", monospace;
+        color: #e2e8f0;
+        line-height: 1.8;
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+
+      /* Syntax Highlighting */
+      .s-keyword {
+        color: #c084fc;
+        font-weight: 600;
+      } /* Purple */
+      .s-entity {
+        color: #60a5fa;
+      } /* Blue */
+      .s-string {
+        color: #4ade80;
+      } /* Green */
+      .s-comment {
+        color: #64748b;
+        font-style: italic;
+      } /* Slate */
+      .s-type {
+        color: #fbbf24;
+      } /* Amber */
+
+      /* Diagnosis Card Styles (Adapted for Benefits) */
+      .info-card {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+        border-radius: 12px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .info-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: #8b5cf6;
+      }
+
+      .feature-tag {
+        font-family: "Fira+Code", monospace;
+        background: rgba(139, 92, 246, 0.15);
+        color: #c4b5fd;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.85em;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <div class="glow-purple"></div>
+      <div class="glow-blue"></div>
+      <!-- Header -->
+      <div
+        class="w-full px-16 pt-10 pb-6 z-10 flex justify-between items-end border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-indigo-900 text-indigo-200 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider"
+              >Feature-First</span
+            >
+            <span class="text-gray-400 text-sm font-mono"
+              >5.1 Auth Feature</span
+            >
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Public API &amp; Encapsulamento
+          </h1>
+        </div>
+        <div class="text-right">
+          <i class="fas fa-cube text-4xl text-indigo-500 opacity-80"></i>
+        </div>
+      </div>
+      <!-- Content Layout -->
+      <div
+        class="flex flex-1 px-16 py-10 gap-12 items-stretch justify-center z-10">
+        <!-- Left: Code Snippet -->
+        <div class="w-7/12 h-full pb-4">
+          <div class="code-window">
+            <div class="code-header">
+              <div class="dot bg-red-500"></div>
+              <div class="dot bg-yellow-500"></div>
+              <div class="dot bg-green-500"></div>
+              <span
+                class="ml-4 text-gray-400 font-mono text-xs flex items-center gap-2">
+                <i class="fab fa-js text-yellow-400"></i>
+                src/features/auth/index.ts
+              </span>
+            </div>
+            <div class="code-body">
+              <div><span class="s-comment">/**</span></div>
+              <div>
+                <span class="s-comment"> * Public API - Auth Feature</span>
+              </div>
+              <div>
+                <span class="s-comment">
+                  * Controla estritamente o que é visível para o app</span
+                >
+              </div>
+              <div><span class="s-comment"> */</span></div>
+              <div class="h-2"></div>
+              <!-- Store -->
+              <div><span class="s-comment">// State Management</span></div>
+              <div>
+                <span class="s-keyword">export</span> {
+                <span class="s-entity">useAuthStore</span> }
+                <span class="s-keyword">from</span>
+                <span class="s-string">'./stores/authStore'</span>;
+              </div>
+              <div class="h-2"></div>
+              <!-- Hooks -->
+              <div>
+                <span class="s-comment">// Server State &amp; Logic</span>
+              </div>
+              <div><span class="s-keyword">export</span> {</div>
+              <div class="pl-8"><span class="s-entity">useLogin</span>,</div>
+              <div class="pl-8"><span class="s-entity">useRegister</span></div>
+              <div>
+                } <span class="s-keyword">from</span>
+                <span class="s-string">'./hooks/useAuthQueries'</span>;
+              </div>
+              <div class="h-2"></div>
+              <!-- ViewModels -->
+              <div>
+                <span class="s-comment">// View Logic Orchestration</span>
+              </div>
+              <div>
+                <span class="s-keyword">export</span> {
+                <span class="s-entity">useLoginViewModel</span> }
+                <span class="s-keyword">from</span>
+                <span class="s-string">'./viewModels/useLoginViewModel'</span>;
+              </div>
+              <div class="h-2"></div>
+              <!-- UI Components -->
+              <div><span class="s-comment">// Screens (Containers)</span></div>
+              <div>
+                <span class="s-keyword">export</span> {
+                <span class="s-entity">LoginScreen</span> }
+                <span class="s-keyword">from</span>
+                <span class="s-string">'./screens/LoginScreen'</span>;
+              </div>
+              <div class="h-2"></div>
+              <!-- Types -->
+              <div>
+                <span class="s-keyword">export type</span> {
+                <span class="s-type">AuthState</span> }
+                <span class="s-keyword">from</span>
+                <span class="s-string">'./types'</span>;
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Explanation Card -->
+        <div class="w-5/12 flex flex-col gap-6 pt-0 pb-4">
+          <div class="info-card">
+            <h3
+              class="font-heading text-2xl font-bold text-white mb-8 flex items-center gap-3">
+              <i class="fas fa-shield-halved text-indigo-400"></i> Contrato
+              Blindado
+            </h3>
+            <div class="space-y-8">
+              <!-- Item 1 -->
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-12 h-12 rounded-lg bg-indigo-900 bg-opacity-50 border border-indigo-700 flex items-center justify-center text-indigo-300">
+                  <i class="fas fa-box-open text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-lg text-white mb-1">
+                    Encapsulamento Real
+                  </p>
+                  <p class="text-gray-400 text-sm leading-relaxed">
+                    Detalhes internos como
+                    <span class="feature-tag">validators</span>,
+                    <span class="feature-tag">api</span> e
+                    <span class="feature-tag">utils</span> ficam invisíveis.
+                    Você pode refatorar sem medo de quebrar quem consome.
+                  </p>
+                </div>
+              </div>
+              <!-- Item 2 -->
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-12 h-12 rounded-lg bg-indigo-900 bg-opacity-50 border border-indigo-700 flex items-center justify-center text-indigo-300">
+                  <i class="fas fa-file-import text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-lg text-white mb-1">
+                    Imports Limpos
+                  </p>
+                  <p class="text-gray-400 text-sm leading-relaxed">
+                    Fim dos imports profundos e frágeis:
+                    <br />
+                    <span class="text-red-400 line-through text-xs"
+                      >../../features/auth/components/internal/Button</span
+                    >
+                    <br />
+                    <span class="text-green-400 text-xs">@features/auth</span>
+                  </p>
+                </div>
+              </div>
+              <!-- Item 3 -->
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-12 h-12 rounded-lg bg-indigo-900 bg-opacity-50 border border-indigo-700 flex items-center justify-center text-indigo-300">
+                  <i class="fas fa-handshake text-xl"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-lg text-white mb-1">Independência</p>
+                  <p class="text-gray-400 text-sm leading-relaxed">
+                    O arquivo <span class="feature-tag">index.ts</span> é o
+                    guardião. Se não está exportado aqui, não existe para o
+                    resto do app.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="absolute bottom-6 right-16 text-gray-600 text-xs font-mono">
+        src/features/auth/index.ts
+      </div>
+    </div>
+  </body>
+</html>

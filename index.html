@@ -1,0 +1,225 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Migração Arquitetural Starbem</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      /* Container principal da apresentação */
+      .presentation-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .presentation-container {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+      /* Cada slide é um componente carregado dinamicamente */
+      .slide-component {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .slide-component.active {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 1;
+      }
+      /* Loader */
+      .slide-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 50vh;
+        gap: 16px;
+        color: #94a3b8;
+      }
+      .slide-loader.hidden {
+        display: none;
+      }
+      /* Navegação */
+      .slide-nav {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(30, 41, 59, 0.9);
+        padding: 8px 16px;
+        border-radius: 9999px;
+        border: 1px solid #334155;
+        z-index: 1000;
+      }
+      .slide-nav button {
+        background: transparent;
+        border: none;
+        color: #f8fafc;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+      .slide-nav button:hover {
+        background: rgba(51, 65, 85, 0.8);
+      }
+      .slide-nav button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .slide-counter {
+        font-family: "Fira Code", monospace;
+        font-size: 0.875rem;
+        color: #94a3b8;
+        min-width: 80px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-loader" id="loader">
+      <i class="fas fa-spinner fa-spin text-4xl text-blue-400"></i>
+      <span>Carregando slides...</span>
+    </div>
+    <div class="presentation-wrapper hidden" id="presentation">
+      <div class="presentation-container">
+        <div class="relative w-full h-full" id="slides-root"></div>
+      </div>
+    </div>
+    <nav class="slide-nav hidden" id="slide-nav">
+      <button type="button" id="btn-prev" aria-label="Slide anterior">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span class="slide-counter" id="slide-counter">1 / 32</span>
+      <button type="button" id="btn-next" aria-label="Próximo slide">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </nav>
+    <script>
+      (function () {
+        const PAGES_COUNT = 32;
+        const slidesRoot = document.getElementById("slides-root");
+        const loader = document.getElementById("loader");
+        const presentation = document.getElementById("presentation");
+        const slideNav = document.getElementById("slide-nav");
+        const btnPrev = document.getElementById("btn-prev");
+        const btnNext = document.getElementById("btn-next");
+        const slideCounter = document.getElementById("slide-counter");
+
+        let currentSlide = 1;
+        let slides = [];
+
+        /**
+         * Carrega o HTML de uma página e extrai conteúdo + estilos
+         */
+        async function loadPageComponent(num) {
+          const res = await fetch(`pages/${num}.html`);
+          const html = await res.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+
+          const styles = doc.head.querySelectorAll("style");
+          const bodyContent = doc.body.querySelector(".slide-container");
+
+          if (!bodyContent) {
+            throw new Error(`Página ${num}.html não possui .slide-container`);
+          }
+
+          const wrapper = document.createElement("div");
+          wrapper.className = "slide-component";
+          wrapper.dataset.slide = num;
+
+          styles.forEach((s) => {
+            wrapper.appendChild(s.cloneNode(true));
+          });
+          wrapper.appendChild(bodyContent.cloneNode(true));
+
+          return wrapper;
+        }
+
+        /**
+         * Carrega todas as páginas como componentes
+         */
+        async function loadAllComponents() {
+          const order = Array.from(
+            { length: PAGES_COUNT },
+            (_, i) => i + 1
+          );
+          const components = await Promise.all(
+            order.map((n) => loadPageComponent(n))
+          );
+          components.forEach((el) => slidesRoot.appendChild(el));
+          slides = components;
+          return components;
+        }
+
+        function goToSlide(index) {
+          if (index < 1 || index > PAGES_COUNT) return;
+          currentSlide = index;
+          slides.forEach((el, i) => {
+            el.classList.toggle("active", i + 1 === index);
+          });
+          slideCounter.textContent = `${index} / ${PAGES_COUNT}`;
+          btnPrev.disabled = index === 1;
+          btnNext.disabled = index === PAGES_COUNT;
+        }
+
+        function showPresentation() {
+          loader.classList.add("hidden");
+          presentation.classList.remove("hidden");
+          slideNav.classList.remove("hidden");
+          goToSlide(1);
+        }
+
+        loadAllComponents()
+          .then(showPresentation)
+          .catch((err) => {
+            loader.innerHTML = `<span class="text-red-400">Erro: ${err.message}</span>`;
+            console.error(err);
+          });
+
+        btnPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
+        btnNext.addEventListener("click", () => goToSlide(currentSlide + 1));
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") goToSlide(currentSlide - 1);
+          if (e.key === "ArrowRight") goToSlide(currentSlide + 1);
+        });
+      })();
+    </script>
+  </body>
+</html>

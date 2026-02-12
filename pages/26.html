@@ -1,0 +1,322 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Impacto - Caso Crítico useNewSchedule.tsx</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Danger Zone Background */
+      .hazard-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0f172a;
+        background-image:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(220, 38, 38, 0.05) 0%,
+            transparent 20%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(59, 130, 246, 0.05) 0%,
+            transparent 20%
+          );
+        z-index: 0;
+      }
+
+      /* Card Styling */
+      .symptom-card {
+        background-color: rgba(30, 41, 59, 0.6);
+        border-left: 4px solid #ef4444;
+        backdrop-filter: blur(5px);
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+
+      .solution-card {
+        background-color: rgba(30, 41, 59, 0.6);
+        border-left: 4px solid #10b981;
+        backdrop-filter: blur(5px);
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+
+      .vs-badge {
+        background-color: #334155;
+        color: #cbd5e1;
+        font-weight: bold;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        border: 1px solid #475569;
+      }
+
+      .arrow-right {
+        color: #64748b;
+        font-size: 1.5rem;
+      }
+
+      /* Meme Frame */
+      .meme-frame {
+        transform: rotate(-2deg);
+        transition: transform 0.3s ease;
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.5),
+          0 10px 10px -5px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .meme-frame:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+
+      .code-snippet {
+        font-family: "Fira Code", monospace;
+        font-size: 0.7rem;
+        line-height: 1.4;
+        color: #94a3b8;
+        background-color: #1e293b;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        border: 1px solid #334155;
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        z-index: -1;
+        opacity: 0.6;
+        width: 120%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background -->
+      <div class="hazard-bg"></div>
+      <!-- Header -->
+      <div
+        class="w-full px-16 pt-12 pb-6 z-10 flex justify-between items-end border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-red-900 text-red-200 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider border border-red-700">
+              <i class="fas fa-biohazard mr-1"></i> Caso Crítico
+            </span>
+            <span class="text-gray-400 text-sm font-mono"
+              >src/hooks/useNewSchedule.tsx</span
+            >
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Impacto Real: O Monólito
+          </h1>
+          <p class="text-gray-400 mt-2 text-xl font-light">
+            Transformando um arquivo impossível em arquitetura limpa
+          </p>
+        </div>
+        <div class="text-right">
+          <div class="flex items-center gap-2 text-red-500 opacity-80">
+            <i class="fas fa-file-code text-4xl"></i>
+            <span class="text-2xl font-mono font-bold">1.500+</span>
+          </div>
+          <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">
+            Linhas de Código
+          </p>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="flex-1 flex px-16 py-8 gap-12 z-10 items-center">
+        <!-- Left Column: Problem vs Solution -->
+        <div class="w-7/12 flex flex-col h-full justify-center">
+          <div class="mb-2 flex items-center gap-4">
+            <h3
+              class="text-red-400 font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+              <i class="fas fa-bug"></i> Sintomas (O Problema)
+            </h3>
+            <div class="flex-grow h-px bg-gray-800"></div>
+          </div>
+          <!-- Problems -->
+          <div class="symptom-card">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">Arquivo Monolítico</h4>
+                <p class="text-gray-400 text-xs mt-1">
+                  Lógica de UI, Regras, API e Estado misturados em um único hook
+                  gigante.
+                </p>
+              </div>
+              <i class="fas fa-cube text-red-500 opacity-50 text-xl"></i>
+            </div>
+          </div>
+          <div class="symptom-card">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">Difícil de Testar</h4>
+                <p class="text-gray-400 text-xs mt-1">
+                  Dependências acopladas impedem testes unitários isolados.
+                  "Testar tudo ou nada".
+                </p>
+              </div>
+              <i
+                class="fas fa-vial-circle-check text-red-500 opacity-50 text-xl"></i>
+            </div>
+          </div>
+          <div class="symptom-card">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-white font-bold text-sm">
+                  Alto Risco de Regressão
+                </h4>
+                <p class="text-gray-400 text-xs mt-1">
+                  Qualquer alteração pequena pode quebrar fluxos não
+                  relacionados.
+                </p>
+              </div>
+              <i
+                class="fas fa-triangle-exclamation text-red-500 opacity-50 text-xl"></i>
+            </div>
+          </div>
+          <!-- Transition -->
+          <div class="flex justify-center my-4 relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-700"></div>
+            </div>
+            <span
+              class="relative bg-gray-900 px-4 text-gray-400 text-sm font-mono flex items-center gap-2 border border-gray-700 rounded-full py-1">
+              <i class="fas fa-arrow-down"></i> Refatoração Feature-First
+              <i class="fas fa-arrow-down"></i>
+            </span>
+          </div>
+          <!-- Solutions -->
+          <div class="mb-2 flex items-center gap-4">
+            <h3
+              class="text-green-400 font-bold uppercase tracking-wider text-sm flex items-center gap-2">
+              <i class="fas fa-check-circle"></i> Nova Abordagem (A Solução)
+            </h3>
+            <div class="flex-grow h-px bg-gray-800"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="solution-card mb-0">
+              <h4 class="text-white font-bold text-sm mb-1">
+                ViewModels Menores
+              </h4>
+              <p class="text-gray-400 text-xs">
+                Quebra da lógica em pedaços focados por etapa.
+              </p>
+            </div>
+            <div class="solution-card mb-0">
+              <h4 class="text-white font-bold text-sm mb-1">API Isolada</h4>
+              <p class="text-gray-400 text-xs">
+                Camada de serviço separada da view.
+              </p>
+            </div>
+            <div class="solution-card mb-0">
+              <h4 class="text-white font-bold text-sm mb-1">React Query</h4>
+              <p class="text-gray-400 text-xs">
+                Gerenciamento de server state automático.
+              </p>
+            </div>
+            <div class="solution-card mb-0">
+              <h4 class="text-white font-bold text-sm mb-1">
+                Validators Puros
+              </h4>
+              <p class="text-gray-400 text-xs">
+                Funções testáveis sem dependência de React.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Meme -->
+        <div
+          class="w-5/12 h-full flex flex-col justify-center items-center relative pl-8">
+          <div class="relative w-full max-w-md">
+            <!-- Meme Container -->
+            <div class="bg-gray-800 p-3 rounded-lg meme-frame relative z-10">
+              <div class="overflow-hidden rounded border border-gray-700">
+                <img
+                  alt="Meme: Eu contra o arquivo de 1.500 linhas"
+                  class="w-full h-auto object-cover"
+                  src="https://page.gensparksite.com/slides_images/72e4786d41cf58ef7584a83f46012d01.webp"
+                  style="
+                    max-height: 350px;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: top;
+                  " />
+              </div>
+              <div class="mt-3 text-center border-t border-gray-700 pt-2">
+                <p class="text-white font-bold text-sm">
+                  "Eu vs. Arquivo de 1.500 linhas"
+                </p>
+                <p class="text-gray-400 text-xs italic">
+                  A batalha final antes do commit
+                </p>
+              </div>
+            </div>
+            <!-- Decorative Code Background -->
+            <div class="code-snippet">
+              <p class="text-green-400">// DEPOIS: useScheduleViewModel.ts</p>
+              <p>export const useScheduleViewModel = () =&gt; {</p>
+              <p class="pl-4">const { data } = useScheduleQuery();</p>
+              <p class="pl-4">const { validate } = useScheduleValidator();</p>
+              <p class="pl-4">return { data, isValid: validate(data) };</p>
+              <p>}</p>
+              <p class="text-red-400 mt-2">// ANTES: useNewSchedule.tsx</p>
+              <p>useEffect(() =&gt; {</p>
+              <p class="pl-4">fetch('/api/schedule').then(res =&gt; {</p>
+              <p class="pl-8">if (res.ok) {</p>
+              <p class="pl-12">setIsLoading(false);</p>
+              <p class="pl-12">if (user.type === 'doctor') { ... }</p>
+              <p class="pl-8">}</p>
+              <p class="pl-4">})</p>
+              <p>}, [user, date, type, status, navigation]);</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div
+        class="absolute bottom-4 right-16 text-gray-500 text-xs font-mono flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+        Migration Status: In Progress
+      </div>
+    </div>
+  </body>
+</html>

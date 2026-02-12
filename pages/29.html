@@ -1,0 +1,358 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Métricas de Qualidade</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      /* Font Utilities */
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .glow-top-right {
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #10b981; /* Green for quality */
+      }
+      .glow-bottom-left {
+        bottom: -100px;
+        left: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #3b82f6; /* Blue for trust */
+      }
+
+      /* Container Styling */
+      .glass-panel {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #334155;
+        background-color: rgba(30, 41, 59, 0.5); /* Slate 800 with opacity */
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Table Specifics */
+      .table-header {
+        background-color: #1e293b;
+        border-bottom: 2px solid #334155;
+      }
+
+      .table-row {
+        border-bottom: 1px solid #334155;
+        transition: background-color 0.2s;
+      }
+
+      .table-row:last-child {
+        border-bottom: none;
+      }
+
+      .table-row:hover {
+        background-color: rgba(51, 65, 85, 0.5);
+      }
+
+      /* Badges */
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 12px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .badge-good {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: #6ee7b7;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      .badge-bad {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+
+      /* Icons */
+      .icon-box {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background-color: rgba(15, 23, 42, 0.6);
+        border: 1px solid #334155;
+      }
+
+      /* Checklist Styling */
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px dashed rgba(51, 65, 85, 0.5);
+      }
+      .checklist-item:last-child {
+        border-bottom: none;
+      }
+      .check-icon {
+        color: #10b981;
+        margin-right: 12px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-effect glow-top-right"></div>
+      <div class="glow-effect glow-bottom-left"></div>
+      <!-- Header -->
+      <div class="px-16 pt-12 pb-6 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              <i class="fas fa-heartbeat mr-2"></i> Quality Assurance
+            </span>
+            <span class="text-gray-400 text-sm font-mono"
+              >11.0 Health Check</span
+            >
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Métricas de Qualidade
+          </h1>
+          <p class="text-gray-400 mt-2 text-lg font-light">
+            Indicadores de saúde do código e checklist de conformidade
+          </p>
+        </div>
+        <!-- Metric Card -->
+        <div
+          class="bg-slate-800 bg-opacity-60 border border-slate-700 p-4 rounded-xl backdrop-blur-sm flex items-center gap-4">
+          <div class="text-right">
+            <p class="text-xs text-gray-400 uppercase font-bold tracking-wider">
+              Target Coverage
+            </p>
+            <p class="text-2xl font-bold text-green-400">&gt; 80%</p>
+          </div>
+          <div
+            class="h-10 w-10 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center text-green-400">
+            <i class="fas fa-bullseye"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="flex-1 px-16 py-4 z-10 relative flex gap-8">
+        <!-- Left Column: Checklist -->
+        <div class="w-1/3 flex flex-col">
+          <div class="glass-panel h-full p-6 flex flex-col">
+            <div
+              class="mb-4 flex items-center gap-3 border-b border-gray-700 pb-3">
+              <div class="icon-box text-blue-400">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-white">
+                Feature Checklist
+              </h3>
+            </div>
+            <div class="flex-1 overflow-y-auto pr-2">
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">
+                  Feature isolada em diretório próprio
+                </p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">
+                  Public API definida (index.ts)
+                </p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">Screens finas (View Only)</p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">
+                  ViewModels focados em lógica
+                </p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">Sem chamadas HTTP na UI</p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">React Query configurado</p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">
+                  Validators puros e testáveis
+                </p>
+              </div>
+              <div class="checklist-item">
+                <i class="fas fa-check-circle check-icon"></i>
+                <p class="text-sm text-gray-300">Analytics padronizado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Table -->
+        <div class="w-2/3 flex flex-col justify-center">
+          <div class="glass-panel w-full">
+            <!-- Table Header -->
+            <div
+              class="table-header grid grid-cols-12 px-6 py-4 text-gray-400 text-xs font-bold uppercase tracking-wider font-heading">
+              <div class="col-span-4">Indicador</div>
+              <div class="col-span-4 text-center">Bom (Meta)</div>
+              <div class="col-span-4 text-center">Problema (Risco)</div>
+            </div>
+            <!-- Row 1 -->
+            <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+              <div class="col-span-4 flex items-center gap-3">
+                <div class="icon-box text-purple-400">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-white text-sm">ViewModel Size</p>
+                </div>
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-good font-mono"
+                  >&lt; 200 linhas</span
+                >
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-bad font-mono"
+                  >&gt; 500 linhas</span
+                >
+              </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+              <div class="col-span-4 flex items-center gap-3">
+                <div class="icon-box text-blue-400">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-white text-sm">
+                    Screen Component
+                  </p>
+                </div>
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-good font-mono"
+                  >&lt; 100 linhas</span
+                >
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-bad font-mono"
+                  >&gt; 200 linhas</span
+                >
+              </div>
+            </div>
+            <!-- Row 3 -->
+            <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+              <div class="col-span-4 flex items-center gap-3">
+                <div class="icon-box text-green-400">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-white text-sm">Test Coverage</p>
+                </div>
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-good font-mono">&gt; 80%</span>
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-bad font-mono">&lt; 50%</span>
+              </div>
+            </div>
+            <!-- Row 4 -->
+            <div class="table-row grid grid-cols-12 px-6 py-5 items-center">
+              <div class="col-span-4 flex items-center gap-3">
+                <div class="icon-box text-yellow-400">
+                  <i class="fas fa-random"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-white text-sm">
+                    Imports Cruzados
+                  </p>
+                </div>
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-good font-mono">0</span>
+              </div>
+              <div class="col-span-4 flex justify-center">
+                <span class="status-badge badge-bad font-mono">Muitos</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-4 p-4 rounded-lg border border-yellow-800 bg-yellow-900 bg-opacity-20 flex items-start gap-3">
+            <i class="fas fa-lightbulb text-yellow-500 mt-1"></i>
+            <p class="text-sm text-yellow-200">
+              <span class="font-bold">Dica:</span> Mantenha os ViewModels
+              focados apenas em orquestração. Se crescer muito, extraia lógica
+              para Use Cases ou Helpers.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Footer Info -->
+      <div
+        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        <div>
+          <i class="fas fa-info-circle mr-2"></i>
+          Métricas monitoradas via SonarQube e CI/CD pipeline
+        </div>
+        <div>Review: <span class="text-white font-bold">Semanal</span></div>
+      </div>
+    </div>
+  </body>
+</html>

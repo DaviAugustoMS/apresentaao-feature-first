@@ -1,0 +1,320 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MVVM vs Clean Architecture</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira+Code", monospace;
+      }
+      /* Visual accents without gradients */
+      .glow-purple {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background-color: #8b5cf6;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.05;
+        top: 50px;
+        left: -100px;
+        z-index: 0;
+      }
+      .glow-blue {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background-color: #3b82f6;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.05;
+        bottom: 50px;
+        right: -100px;
+        z-index: 0;
+      }
+      /* Card style */
+      .tech-card {
+        background-color: #1e293b;
+        border-radius: 12px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        border: 1px solid #334155;
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .card-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid #334155;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .card-content {
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feature-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-family: "Fira+Code", monospace;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .vs-divider {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        background-color: #1e293b;
+        border: 2px solid #475569;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        font-weight: 800;
+        font-family: "Montserrat", sans-serif;
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-purple"></div>
+      <div class="glow-blue"></div>
+      <!-- Header Section -->
+      <div class="w-full px-16 pt-10 pb-4 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-gray-700 text-gray-300 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider"
+              >Arquitetura</span
+            >
+            <span class="text-gray-400 text-sm font-mono">6.1 Padrões</span>
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            MVVM vs Clean Architecture
+          </h1>
+          <p class="text-gray-400 mt-1 text-lg font-light">
+            Escolhendo a ferramenta certa para o trabalho
+          </p>
+        </div>
+      </div>
+      <!-- Main Content 2 Columns -->
+      <div class="flex-1 flex px-16 py-6 gap-12 z-10 relative">
+        <!-- Central VS Divider -->
+        <div class="vs-divider">VS</div>
+        <!-- Left Column: MVVM (Purple) -->
+        <div class="flex-1 flex flex-col h-full">
+          <div class="tech-card border-purple-500 border-opacity-30">
+            <div
+              class="card-header bg-purple-900 bg-opacity-20 border-purple-900 border-opacity-30">
+              <div class="flex items-center gap-3">
+                <div class="p-2 bg-purple-500 rounded-lg">
+                  <i class="fas fa-layer-group text-white text-lg"></i>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-white">MVVM</h3>
+              </div>
+              <span
+                class="text-xs bg-purple-900 text-purple-200 px-2 py-1 rounded font-mono border border-purple-700"
+                >Padrão</span
+              >
+            </div>
+            <div class="card-content bg-gray-900 bg-opacity-40">
+              <div class="mb-4">
+                <p class="text-purple-300 font-bold mb-2 text-lg">
+                  Model - View - ViewModel
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  Padrão arquitetural focado na separação entre lógica de
+                  apresentação e interface do usuário. Ideal para fluxos
+                  lineares e conectados à UI.
+                </p>
+              </div>
+              <div class="space-y-4 mb-6">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-purple-400 mt-1"></i>
+                  <div>
+                    <p class="text-white font-semibold text-sm">
+                      Simples &amp; Direto
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                      Curva de aprendizado menor, menos boilerplate.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-purple-400 mt-1"></i>
+                  <div>
+                    <p class="text-white font-semibold text-sm">Eficiente</p>
+                    <p class="text-gray-500 text-xs">
+                      Ótimo para domínios de complexidade média.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-bolt text-yellow-400 mt-1"></i>
+                  <div>
+                    <p class="text-white font-semibold text-sm">
+                      React Query Integration
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                      Se encaixa perfeitamente com Server State.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-auto">
+                <p
+                  class="text-gray-500 text-xs uppercase tracking-widest font-bold mb-3">
+                  Aplicado em:
+                </p>
+                <div class="flex flex-wrap">
+                  <div
+                    class="feature-badge text-purple-200 border-purple-800 bg-purple-900 bg-opacity-30">
+                    <i class="fas fa-lock mr-2 text-xs"></i>Auth
+                  </div>
+                  <div
+                    class="feature-badge text-purple-200 border-purple-800 bg-purple-900 bg-opacity-30">
+                    <i class="fas fa-shopping-cart mr-2 text-xs"></i>BuyProduct
+                  </div>
+                  <div
+                    class="feature-badge text-purple-200 border-purple-800 bg-purple-900 bg-opacity-30">
+                    <i class="fas fa-calendar mr-2 text-xs"></i>Schedule
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Clean Architecture (Blue) -->
+        <div class="flex-1 flex flex-col h-full">
+          <div class="tech-card border-blue-500 border-opacity-30">
+            <div
+              class="card-header bg-blue-900 bg-opacity-20 border-blue-900 border-opacity-30">
+              <div class="flex items-center gap-3">
+                <div class="p-2 bg-blue-500 rounded-lg">
+                  <i class="fas fa-gem text-white text-lg"></i>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-white">
+                  Clean Architecture
+                </h3>
+              </div>
+              <span
+                class="text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded font-mono border border-blue-700"
+                >Premium</span
+              >
+            </div>
+            <div class="card-content bg-gray-900 bg-opacity-40">
+              <div class="mb-4">
+                <p class="text-blue-300 font-bold mb-2 text-lg">
+                  Domain Centric
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                  Arquitetura em camadas concêntricas que isola completamente as
+                  regras de negócio de detalhes externos (UI, DB, API).
+                </p>
+              </div>
+              <div class="space-y-4 mb-6">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-blue-400 mt-1"></i>
+                  <div>
+                    <p class="text-white font-semibold text-sm">
+                      Isolamento Máximo
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                      Domínio não conhece React ou API.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-blue-400 mt-1"></i>
+                  <div>
+                    <p class="text-white font-semibold text-sm">
+                      Testabilidade Total
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                      Regras testáveis sem framework.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-shield-alt text-green-400 mt-1"></i>
+                  <div>
+                    <p class="text-white font-semibold text-sm">
+                      Independência
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                      Mudanças na UI não afetam o Domain.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-auto">
+                <p
+                  class="text-gray-500 text-xs uppercase tracking-widest font-bold mb-3">
+                  Aplicado em:
+                </p>
+                <div class="flex flex-wrap">
+                  <div
+                    class="feature-badge text-blue-200 border-blue-800 bg-blue-900 bg-opacity-30">
+                    <i class="fas fa-heart mr-2 text-xs"></i>Feelings
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div
+        class="absolute bottom-4 left-16 right-16 flex justify-between text-gray-600 text-xs font-mono border-t border-gray-800 pt-3">
+        <span>Critério: Complexidade do Domínio</span>
+        <span>Starbem v1.0</span>
+      </div>
+    </div>
+  </body>
+</html>

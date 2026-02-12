@@ -1,0 +1,174 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Padrões Arquiteturais</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background-color: #0f172a;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira+Code", monospace;
+      }
+      /* Visual accents without gradients */
+      .glow-primary {
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        background-color: #6366f1; /* Indigo 500 */
+        border-radius: 50%;
+        filter: blur(180px);
+        opacity: 0.15;
+        top: -200px;
+        right: -200px;
+        z-index: 0;
+      }
+      .glow-secondary {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background-color: #3b82f6; /* Blue 500 */
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.2;
+        bottom: -200px;
+        left: -100px;
+        z-index: 0;
+      }
+      .grid-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Using simple background pattern with radial gradient for dots */
+        background-image: radial-gradient(#4f46e5 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.15;
+        z-index: 1;
+      }
+      .glass-panel {
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="grid-bg"></div>
+      <div class="glow-primary"></div>
+      <div class="glow-secondary"></div>
+      <!-- Content Wrapper -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center text-center w-full px-24">
+        <!-- Section Icon -->
+        <div class="mb-10 relative">
+          <div
+            class="absolute -inset-6 bg-indigo-600 rounded-full opacity-20 filter blur-xl animate-pulse"></div>
+          <div
+            class="relative bg-gray-900 p-6 rounded-full border-2 border-indigo-500 shadow-lg shadow-indigo-900/50">
+            <i class="fas fa-layer-group text-6xl text-indigo-400"></i>
+          </div>
+        </div>
+        <!-- Main Title Group -->
+        <div class="mb-8">
+          <h2
+            class="font-heading text-2xl tracking-[0.3em] text-indigo-300 uppercase font-bold mb-4 opacity-80">
+            Design de Software
+          </h2>
+          <h1
+            class="font-heading text-7xl font-black text-white leading-tight tracking-tight mb-2">
+            <span class="relative inline-block">
+              Padrões Arquiteturais
+              <span
+                class="absolute -bottom-2 left-0 w-full h-2 bg-indigo-500 opacity-80 skew-x-12"></span>
+            </span>
+          </h1>
+          <div class="flex items-center justify-center gap-4 mt-2">
+            <div class="h-px w-20 bg-indigo-800"></div>
+            <span class="font-mono text-3xl text-gray-400 font-bold"
+              >MVVM vs Clean Arch</span
+            >
+            <div class="h-px w-20 bg-indigo-800"></div>
+          </div>
+        </div>
+        <!-- Description Box -->
+        <div
+          class="glass-panel rounded-xl p-8 max-w-4xl border-l-4 border-l-indigo-500">
+          <p class="text-2xl text-gray-300 font-light leading-relaxed">
+            Não existe bala de prata. A escolha entre
+            <strong class="text-white font-bold">Simplicidade</strong> e
+            <strong class="text-white font-bold">Isolamento</strong> é guiada
+            estritamente pelo
+            <span class="text-indigo-400 font-mono italic"
+              >grau de complexidade</span
+            >
+            do domínio.
+          </p>
+          <div
+            class="mt-6 flex justify-center gap-8 text-sm font-mono text-indigo-200 opacity-90">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-balance-scale"></i>
+              <span>Complexidade do Domínio</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-code-branch"></i>
+              <span>Escalabilidade</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-cube"></i>
+              <span>Encapsulamento</span>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Tag -->
+        <div class="absolute bottom-16 w-full flex justify-center opacity-60">
+          <div
+            class="flex items-center gap-4 text-indigo-400 font-mono text-sm tracking-widest border border-indigo-900 px-6 py-2 rounded bg-indigo-900 bg-opacity-20">
+            <i class="fas fa-compass"></i>
+            GUIDING PRINCIPLE: RIGHT TOOL FOR THE JOB
+          </div>
+        </div>
+      </div>
+      <!-- Decorative Elements -->
+      <div class="absolute top-20 right-20 opacity-10 transform rotate-12">
+        <i class="fas fa-project-diagram text-9xl text-indigo-500"></i>
+      </div>
+      <div class="absolute bottom-20 left-20 opacity-5 transform -rotate-12">
+        <i class="fas fa-drafting-compass text-9xl text-white"></i>
+      </div>
+    </div>
+  </body>
+</html>

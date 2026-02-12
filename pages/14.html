@@ -1,0 +1,395 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>BuyProduct Feature Details</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;500;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      /* Font Utilities */
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects (No Gradients) */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .glow-purple {
+        top: -150px;
+        right: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #7c3aed;
+      }
+      .glow-blue {
+        bottom: -150px;
+        left: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #2563eb;
+      }
+
+      /* Card Styles */
+      .feature-card {
+        background-color: rgba(30, 41, 59, 0.4);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        padding: 24px;
+        height: 100%;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(59, 130, 246, 0.3);
+        background-color: rgba(30, 41, 59, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .card-header-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+
+      /* List Styling */
+      .check-list-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        color: #cbd5e1;
+      }
+      .check-list-item i {
+        margin-top: 4px;
+        margin-right: 10px;
+      }
+
+      /* Payment Methods Grid */
+      .payment-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .payment-item {
+        background-color: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 8px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .payment-item:hover {
+        border-color: rgba(59, 130, 246, 0.5);
+        background-color: rgba(30, 41, 59, 0.8);
+      }
+
+      .payment-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1e293b;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+
+      /* Badge */
+      .tech-badge {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background-color: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        color: #94a3b8;
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Scope Blocks */
+      .scope-block {
+        background-color: rgba(30, 41, 59, 0.5);
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 16px;
+        border-left: 4px solid;
+      }
+
+      .scope-block.sacola {
+        border-left-color: #3b82f6;
+      }
+      .scope-block.pagamento {
+        border-left-color: #10b981;
+      }
+      .scope-block.wallet {
+        border-left-color: #f59e0b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-effect glow-purple"></div>
+      <div class="glow-effect glow-blue"></div>
+      <!-- Header -->
+      <div
+        class="px-16 pt-10 pb-6 z-10 flex justify-between items-end border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              Feature First
+            </span>
+            <span class="text-gray-400 text-sm font-mono"
+              >5.2 Implementation</span
+            >
+          </div>
+          <h1
+            class="font-heading text-5xl font-extrabold text-white tracking-tight flex items-center gap-4">
+            BuyProduct <span class="text-3xl opacity-80">🛒</span>
+          </h1>
+        </div>
+        <div class="flex gap-3">
+          <span
+            class="tech-badge text-green-400 border-green-900 bg-green-900 bg-opacity-20"
+            >Status: ✅ Migrado</span
+          >
+          <span
+            class="tech-badge text-yellow-300 border-yellow-900 bg-yellow-900 bg-opacity-20"
+            >Complexidade: Média-Alta</span
+          >
+        </div>
+      </div>
+      <!-- Main Content Grid -->
+      <div class="flex-1 px-16 py-8 z-10 grid grid-cols-12 gap-8">
+        <!-- Left Column: Scope Overview -->
+        <div class="col-span-5 flex flex-col h-full">
+          <div class="feature-card border-l-4 border-l-blue-500">
+            <div
+              class="card-header-icon bg-blue-900 bg-opacity-30 text-blue-400">
+              <i class="fas fa-boxes-packing"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-6">
+              Escopo Funcional
+            </h3>
+            <div class="flex flex-col gap-4">
+              <!-- Sacola -->
+              <div class="scope-block sacola">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-bold text-blue-300">Sacola de Compras</h4>
+                  <i class="fas fa-shopping-bag text-blue-400 opacity-60"></i>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Gerenciamento de itens, cálculo de subtotal, aplicação de
+                  cupons e regras de desconto.
+                </p>
+              </div>
+              <!-- Pagamento -->
+              <div class="scope-block pagamento">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-bold text-green-300">
+                    Checkout &amp; Pagamento
+                  </h4>
+                  <i class="fas fa-credit-card text-green-400 opacity-60"></i>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Orquestração de transações, integração com gateway, tratamento
+                  de erros e confirmação.
+                </p>
+              </div>
+              <!-- Wallet -->
+              <div class="scope-block wallet">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-bold text-yellow-300">Wallet Digital</h4>
+                  <i class="fas fa-wallet text-yellow-400 opacity-60"></i>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Gestão de cartões salvos, saldo em conta e histórico de
+                  transações.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Payment Methods & Organization -->
+        <div class="col-span-7 flex flex-col h-full gap-6">
+          <!-- Payment Methods -->
+          <div class="feature-card border-l-4 border-l-green-500 flex-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="card-header-icon bg-green-900 bg-opacity-30 text-green-400 mb-0"
+                style="width: 40px; height: 40px; font-size: 1.2rem">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-white">
+                Múltiplos Meios de Pagamento
+              </h3>
+            </div>
+            <div class="payment-grid">
+              <!-- Cartão -->
+              <div class="payment-item">
+                <div class="payment-icon text-blue-400">
+                  <i class="fas fa-credit-card"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-gray-200">
+                    Cartão de Crédito
+                  </p>
+                  <p class="text-xs text-gray-500">Tokenização segura</p>
+                </div>
+              </div>
+              <!-- Pix -->
+              <div class="payment-item">
+                <div class="payment-icon text-green-400">
+                  <i class="fas fa-qrcode"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-gray-200">Pix Instantâneo</p>
+                  <p class="text-xs text-gray-500">
+                    Copy &amp; Paste / QR Code
+                  </p>
+                </div>
+              </div>
+              <!-- Google Pay -->
+              <div class="payment-item">
+                <div class="payment-icon text-white">
+                  <i class="fab fa-google"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-gray-200">Google Pay</p>
+                  <p class="text-xs text-gray-500">Native Android Pay</p>
+                </div>
+              </div>
+              <!-- Apple Pay -->
+              <div class="payment-item">
+                <div class="payment-icon text-white">
+                  <i class="fab fa-apple"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-gray-200">Apple Pay</p>
+                  <p class="text-xs text-gray-500">iOS Integration</p>
+                </div>
+              </div>
+            </div>
+            <!-- Pagar.me Highlight -->
+            <div
+              class="mt-6 p-4 bg-gray-900 bg-opacity-60 rounded-lg border border-gray-800 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="bg-purple-900 bg-opacity-30 p-2 rounded text-purple-400">
+                  <i class="fas fa-server"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-white">
+                    Gateway: Pagar.me v5
+                  </p>
+                  <p class="text-xs text-gray-500">
+                    Integração robusta com antifraude
+                  </p>
+                </div>
+              </div>
+              <span class="tech-badge text-purple-300 border-purple-800"
+                >Core Service</span
+              >
+            </div>
+          </div>
+          <!-- Organization Preview -->
+          <div
+            class="bg-gray-900 rounded-lg p-5 border border-gray-800 flex-1 relative overflow-hidden flex flex-col justify-center">
+            <div class="absolute top-0 right-0 p-2 opacity-10 text-6xl">
+              <i class="fas fa-sitemap"></i>
+            </div>
+            <div class="flex items-center justify-between px-4">
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-900 bg-opacity-30 flex items-center justify-center text-blue-400 mx-auto mb-2 border border-blue-800">
+                  <i class="fas fa-mobile-alt"></i>
+                </div>
+                <p class="text-xs font-bold text-gray-300">UI / Screens</p>
+              </div>
+              <div class="h-0.5 w-16 bg-gray-700 relative">
+                <div
+                  class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full bg-gray-500"></div>
+              </div>
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-purple-900 bg-opacity-30 flex items-center justify-center text-purple-400 mx-auto mb-2 border border-purple-800">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <p class="text-xs font-bold text-gray-300">
+                  Lógica / ViewModel
+                </p>
+              </div>
+              <div class="h-0.5 w-16 bg-gray-700 relative">
+                <div
+                  class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 rounded-full bg-gray-500"></div>
+              </div>
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 rounded-full bg-green-900 bg-opacity-30 flex items-center justify-center text-green-400 mx-auto mb-2 border border-green-800">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p class="text-xs font-bold text-gray-300">API / Gateway</p>
+              </div>
+            </div>
+            <div class="mt-4 text-center">
+              <p class="text-xs text-gray-500 font-mono">
+                Arquitetura MVVM desacoplada
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="absolute bottom-4 right-16 text-gray-600 text-xs font-mono">
+        Feature: BuyProduct (v1.0)
+      </div>
+    </div>
+  </body>
+</html>

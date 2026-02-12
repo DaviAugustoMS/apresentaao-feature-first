@@ -1,0 +1,361 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Guia de Migração - Ordem Recomendada</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Open+Sans:wght@400;600&amp;family=Fira+Code:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.1;
+        z-index: 0;
+      }
+      .glow-blue {
+        top: -100px;
+        right: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #3b82f6;
+      }
+      .glow-purple {
+        bottom: -100px;
+        left: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #7c3aed;
+      }
+
+      /* Checklist Styling */
+      .checklist-container {
+        position: relative;
+        z-index: 10;
+      }
+
+      .checklist-item {
+        background-color: rgba(30, 41, 59, 0.4);
+        border: 1px solid #334155;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .checklist-item:hover {
+        background-color: rgba(51, 65, 85, 0.6);
+        transform: translateX(8px);
+        border-color: #475569;
+      }
+
+      /* Status Styles */
+      .checklist-item.done {
+        border-color: rgba(16, 185, 129, 0.3);
+        background-color: rgba(16, 185, 129, 0.05);
+      }
+      .checklist-item.progress {
+        border-color: #3b82f6;
+        background-color: rgba(59, 130, 246, 0.1);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+      }
+
+      .checklist-icon {
+        width: 24px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .step-number {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.03);
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .status-pill {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+      }
+
+      .status-pending {
+        background-color: rgba(148, 163, 184, 0.1);
+        color: #94a3b8;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+      }
+      .status-progress {
+        background-color: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      .status-done {
+        background-color: rgba(16, 185, 129, 0.15);
+        color: #34d399;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+      }
+
+      /* Progress Bar */
+      .progress-track {
+        width: 100%;
+        height: 8px;
+        background-color: #1e293b;
+        border-radius: 9999px;
+        overflow: hidden;
+        margin-top: 24px;
+      }
+      .progress-fill {
+        height: 100%;
+        background-color: #10b981;
+        width: 30%; /* 3 out of 10 done */
+        border-radius: 9999px;
+      }
+
+      /* Backlog Item */
+      .backlog-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background-color: rgba(30, 41, 59, 0.3);
+        border: 1px solid rgba(71, 85, 105, 0.3);
+        border-radius: 8px;
+        margin-bottom: 8px;
+      }
+      .backlog-icon {
+        width: 32px;
+        height: 32px;
+        background-color: rgba(148, 163, 184, 0.1);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background -->
+      <div class="glow-effect glow-blue"></div>
+      <div class="glow-effect glow-purple"></div>
+      <!-- Header -->
+      <div class="px-16 pt-12 pb-2 z-10 flex justify-between items-end">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-purple-900 bg-opacity-40 text-purple-300 border border-purple-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              <i class="fas fa-map-signs mr-2"></i> Roadmap
+            </span>
+            <span class="text-gray-400 text-sm font-mono"
+              >Status da Migração</span
+            >
+          </div>
+          <h1
+            class="font-heading text-4xl font-extrabold text-white tracking-tight">
+            Ordem Recomendada
+          </h1>
+          <p class="text-gray-400 mt-2 text-lg font-light">
+            Critério: atacar alto impacto + alto risco primeiro
+          </p>
+        </div>
+        <!-- Progress Summary -->
+        <div class="w-64">
+          <div
+            class="flex justify-between text-xs font-bold uppercase tracking-wider mb-2">
+            <span class="text-gray-400">Progresso Global</span>
+            <span class="text-green-400">30%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div class="flex-1 px-16 py-8 z-10 grid grid-cols-12 gap-12">
+        <!-- Left Column: Priority Items (Done & In Progress) -->
+        <div
+          class="col-span-8 checklist-container flex flex-col justify-center gap-3">
+          <!-- Item 1: Auth -->
+          <div class="checklist-item done p-4 flex items-center gap-4">
+            <div class="checklist-icon text-green-400 text-xl">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-100 font-bold text-lg">Auth</h3>
+              <p class="text-gray-400 text-sm mt-0.5">
+                Login, Registro, Recuperação (MVVM)
+              </p>
+            </div>
+            <span class="status-pill status-done z-10">Concluído</span>
+            <span class="step-number">01</span>
+          </div>
+          <!-- Item 2: Feelings -->
+          <div class="checklist-item done p-4 flex items-center gap-4">
+            <div class="checklist-icon text-green-400 text-xl">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-100 font-bold text-lg">Feelings</h3>
+              <p class="text-gray-400 text-sm mt-0.5">
+                Diário de Emoções (Clean Architecture)
+              </p>
+            </div>
+            <span class="status-pill status-done z-10">Concluído</span>
+            <span class="step-number">02</span>
+          </div>
+          <!-- Item 3: BuyProduct -->
+          <div class="checklist-item done p-4 flex items-center gap-4">
+            <div class="checklist-icon text-green-400 text-xl">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-gray-100 font-bold text-lg">BuyProduct</h3>
+              <p class="text-gray-400 text-sm mt-0.5">
+                Ecommerce e Checkou Multi-step
+              </p>
+            </div>
+            <span class="status-pill status-done z-10">Concluído</span>
+            <span class="step-number">03</span>
+          </div>
+          <!-- Item 4: Schedule -->
+          <div class="checklist-item progress p-4 flex items-center gap-4">
+            <div class="checklist-icon text-blue-400 text-xl">
+              <i class="fas fa-sync-alt fa-spin"></i>
+            </div>
+            <div class="flex-1 z-10">
+              <h3 class="text-white font-bold text-lg">Schedule</h3>
+              <p class="text-blue-200 text-sm mt-0.5">
+                Refatoração do hook monstro (MVVM)
+              </p>
+            </div>
+            <span class="status-pill status-progress z-10">Em Progresso</span>
+            <span class="step-number">04</span>
+          </div>
+        </div>
+        <!-- Right Column: Backlog -->
+        <div class="col-span-4 flex flex-col h-full">
+          <div
+            class="bg-slate-800 bg-opacity-60 border border-slate-700 p-6 rounded-xl backdrop-blur-md h-full flex flex-col">
+            <div
+              class="flex items-center gap-3 mb-4 border-b border-slate-700 pb-3">
+              <div
+                class="w-8 h-8 bg-gray-700 bg-opacity-50 rounded-lg flex items-center justify-center text-gray-400">
+                <i class="fas fa-layer-group"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white">Fila de Espera</h3>
+            </div>
+            <div class="flex-1 overflow-y-auto pr-2 space-y-2">
+              <!-- Backlog Items -->
+              <div class="backlog-item">
+                <div class="backlog-icon">
+                  <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">
+                    Subscription
+                  </p>
+                  <p class="text-xs text-gray-500">Gestão de planos</p>
+                </div>
+              </div>
+              <div class="backlog-item">
+                <div class="backlog-icon"><i class="fas fa-user-md"></i></div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">Appointment</p>
+                  <p class="text-xs text-gray-500">Detalhe da consulta</p>
+                </div>
+              </div>
+              <div class="backlog-item">
+                <div class="backlog-icon">
+                  <i class="fas fa-file-medical"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">
+                    MedicalRecord
+                  </p>
+                  <p class="text-xs text-gray-500">Prontuário</p>
+                </div>
+              </div>
+              <div class="backlog-item">
+                <div class="backlog-icon"><i class="fas fa-spa"></i></div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">StarZen</p>
+                  <p class="text-xs text-gray-500">Área de bem-estar</p>
+                </div>
+              </div>
+              <div class="backlog-item">
+                <div class="backlog-icon"><i class="fas fa-wallet"></i></div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">Wallet</p>
+                  <p class="text-xs text-gray-500">Carteira digital</p>
+                </div>
+              </div>
+              <div class="backlog-item">
+                <div class="backlog-icon">
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gray-300">Evaluations</p>
+                  <p class="text-xs text-gray-500">Avaliações</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div
+        class="px-16 pb-6 z-10 flex justify-between items-center text-xs text-gray-600 font-mono">
+        <div>
+          <i class="fas fa-code-branch mr-2"></i>
+          v1.0 Migração
+        </div>
+        <div>Feature-First Architecture</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html>
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Auth Feature Details</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Open+Sans:wght@400;600;700&amp;family=Fira+Code:wght@400;500;600&amp;display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: #0f172a;
+        color: #f8fafc;
+        overflow: hidden;
+      }
+      .slide-container {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        flex-direction: column;
+        background-color: #0f172a;
+        position: relative;
+      }
+
+      /* Font Utilities */
+      .font-heading {
+        font-family: "Montserrat", sans-serif;
+      }
+      .font-mono {
+        font-family: "Fira Code", monospace;
+      }
+
+      /* Background Effects (No Gradients) */
+      .glow-effect {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.15;
+        z-index: 0;
+      }
+      .glow-purple {
+        top: -150px;
+        right: -100px;
+        width: 600px;
+        height: 600px;
+        background-color: #7c3aed;
+      }
+      .glow-blue {
+        bottom: -150px;
+        left: -100px;
+        width: 500px;
+        height: 500px;
+        background-color: #2563eb;
+      }
+
+      /* Card Styles */
+      .feature-card {
+        background-color: rgba(30, 41, 59, 0.4);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        padding: 24px;
+        height: 100%;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(124, 58, 237, 0.3);
+        background-color: rgba(30, 41, 59, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .card-header-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+
+      /* Architecture Flow Diagram Styling */
+      .arch-step {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        padding: 10px 16px;
+        border-radius: 6px;
+        font-family: "Fira Code", monospace;
+        font-size: 0.85rem;
+        color: #e2e8f0;
+        position: relative;
+        text-align: center;
+      }
+
+      .arch-arrow {
+        color: #64748b;
+        font-size: 0.8rem;
+      }
+
+      /* List Styling */
+      .check-list-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        color: #cbd5e1;
+      }
+      .check-list-item i {
+        margin-top: 4px;
+        margin-right: 10px;
+      }
+
+      /* Badge */
+      .tech-badge {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background-color: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        color: #94a3b8;
+        font-family: "Fira Code", monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container">
+      <!-- Background Elements -->
+      <div class="glow-effect glow-purple"></div>
+      <div class="glow-effect glow-blue"></div>
+      <!-- Header -->
+      <div
+        class="px-16 pt-10 pb-6 z-10 flex justify-between items-end border-b border-gray-800">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span
+              class="bg-purple-900 bg-opacity-40 text-purple-300 border border-purple-800 text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+              Feature First
+            </span>
+            <span class="text-gray-400 text-sm font-mono"
+              >5.1 Implementation</span
+            >
+          </div>
+          <h1
+            class="font-heading text-5xl font-extrabold text-white tracking-tight flex items-center gap-4">
+            Auth <span class="text-3xl opacity-60">🔐</span>
+          </h1>
+        </div>
+        <div class="flex gap-3">
+          <span
+            class="tech-badge text-green-400 border-green-900 bg-green-900 bg-opacity-20"
+            >Status: ✅ Migrado</span
+          >
+          <span class="tech-badge">Complexidade: Alta</span>
+        </div>
+      </div>
+      <!-- Main Content Grid -->
+      <div class="flex-1 px-16 py-8 z-10 grid grid-cols-12 gap-8">
+        <!-- Left Column: Responsibilities -->
+        <div class="col-span-4 flex flex-col h-full">
+          <div class="feature-card border-l-4 border-l-purple-500">
+            <div
+              class="card-header-icon bg-purple-900 bg-opacity-30 text-purple-400">
+              <i class="fas fa-list-check"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-4">
+              Responsabilidades
+            </h3>
+            <div class="space-y-1">
+              <div class="check-list-item">
+                <i class="fas fa-check-circle text-purple-500"></i>
+                <p>Login &amp; Autenticação Biométrica</p>
+              </div>
+              <div class="check-list-item">
+                <i class="fas fa-check-circle text-purple-500"></i>
+                <p>Registro Multi-step (Wizard)</p>
+              </div>
+              <div class="check-list-item">
+                <i class="fas fa-check-circle text-purple-500"></i>
+                <p>Verificação de Documentos (OCR)</p>
+              </div>
+              <div class="check-list-item">
+                <i class="fas fa-check-circle text-purple-500"></i>
+                <p>Recuperação de Senha (Fluxo OTP)</p>
+              </div>
+              <div class="check-list-item">
+                <i class="fas fa-check-circle text-purple-500"></i>
+                <p>Logout &amp; Sessão Expiração</p>
+              </div>
+              <div class="check-list-item">
+                <i class="fas fa-check-circle text-purple-500"></i>
+                <p>Validações (CPF, E-mail, Senha)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Middle Column: Architecture Flow -->
+        <div class="col-span-4 flex flex-col h-full">
+          <div class="feature-card border-l-4 border-l-blue-500">
+            <div
+              class="card-header-icon bg-blue-900 bg-opacity-30 text-blue-400">
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-white mb-4">
+              Fluxo Arquitetural
+            </h3>
+            <p class="text-sm text-gray-400 mb-6">
+              Padrão MVVM com separação estrita de camadas.
+            </p>
+            <div class="flex flex-col gap-3 relative">
+              <!-- Step 1 -->
+              <div class="arch-step border-blue-500 border-opacity-40">
+                <span class="text-blue-300 font-bold">Screen</span>
+                <div class="text-xs text-gray-500 mt-1">
+                  Renderização (Container)
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <i class="fas fa-arrow-down arch-arrow"></i>
+              </div>
+              <!-- Step 2 -->
+              <div class="arch-step border-blue-500 border-opacity-40">
+                <span class="text-blue-300 font-bold">ViewModel</span>
+                <div class="text-xs text-gray-500 mt-1">
+                  Orquestração de Lógica
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <i class="fas fa-arrow-down arch-arrow"></i>
+              </div>
+              <!-- Step 3 -->
+              <div class="grid grid-cols-2 gap-2">
+                <div class="arch-step border-yellow-500 border-opacity-30">
+                  <span class="text-yellow-300 font-bold text-xs">Zustand</span>
+                  <div class="text-[10px] text-gray-500">UI State</div>
+                </div>
+                <div class="arch-step border-red-500 border-opacity-30">
+                  <span class="text-red-300 font-bold text-xs"
+                    >React Query</span
+                  >
+                  <div class="text-[10px] text-gray-500">Server State</div>
+                </div>
+              </div>
+              <div class="flex justify-center">
+                <i class="fas fa-arrow-down arch-arrow"></i>
+              </div>
+              <!-- Step 4 -->
+              <div class="arch-step border-green-500 border-opacity-40">
+                <span class="text-green-300 font-bold">API / HTTPClient</span>
+                <div class="text-xs text-gray-500 mt-1">Infraestrutura</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Benefits & Exports -->
+        <div class="col-span-4 flex flex-col h-full gap-6">
+          <!-- Benefits -->
+          <div class="feature-card border-l-4 border-l-green-500 h-1/2">
+            <div class="flex items-center gap-3 mb-3">
+              <i class="fas fa-shield-alt text-green-400 text-xl"></i>
+              <h3 class="font-heading text-lg font-bold text-white">
+                Benefícios
+              </h3>
+            </div>
+            <div class="space-y-3 mt-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="bg-green-900 bg-opacity-50 p-1.5 rounded text-green-400 text-xs">
+                  <i class="fas fa-box"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-sm text-gray-200">
+                    Encapsulamento Total
+                  </p>
+                  <p class="text-xs text-gray-500">
+                    Zero vazamento de lógica para outras features.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div
+                  class="bg-green-900 bg-opacity-50 p-1.5 rounded text-green-400 text-xs">
+                  <i class="fas fa-vial"></i>
+                </div>
+                <div>
+                  <p class="font-bold text-sm text-gray-200">
+                    Testabilidade Isolada
+                  </p>
+                  <p class="text-xs text-gray-500">
+                    Validators e ViewModels testáveis sem UI.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Public API Preview -->
+          <div
+            class="bg-gray-900 rounded-lg p-4 border border-gray-800 flex-1 flex flex-col overflow-hidden relative">
+            <div
+              class="absolute top-0 left-0 right-0 bg-gray-800 px-3 py-1 text-xs text-gray-400 font-mono border-b border-gray-700 flex justify-between items-center">
+              <span>src/features/auth/index.ts</span>
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="mt-6 font-mono text-xs leading-relaxed overflow-hidden">
+              <p class="text-purple-400">export</p>
+              <p class="pl-4 text-blue-300">
+                { <span class="text-yellow-300">useAuthStore</span> }
+              </p>
+              <p class="text-purple-400">export</p>
+              <p class="pl-4 text-blue-300">
+                { <span class="text-yellow-300">useLogin</span>,
+                <span class="text-yellow-300">useRegister</span> }
+              </p>
+              <p class="text-purple-400">export</p>
+              <p class="pl-4 text-blue-300">
+                { <span class="text-yellow-300">LoginScreen</span> }
+              </p>
+              <p class="text-purple-400">export type</p>
+              <p class="pl-4 text-blue-300">
+                { <span class="text-yellow-300">AuthState</span> }
+              </p>
+            </div>
+            <div
+              class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-900 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="absolute bottom-4 right-16 text-gray-600 text-xs font-mono">
+        Feature: Auth (v1.0)
+      </div>
+    </div>
+  </body>
+</html>
