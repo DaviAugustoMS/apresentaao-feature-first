@@ -123,7 +123,9 @@
         font-weight: 700;
         font-size: 0.7rem;
         margin-bottom: 6px;
-        position: relative;
+        position: absolute;
+        top: 20px;
+        left: 20px;
         z-index: 2;
       }
 
@@ -131,6 +133,7 @@
         font-size: 1.2rem;
         margin-bottom: 6px;
         opacity: 0.9;
+        margin-top: 40px;
       }
 
       /* Connecting Lines */
@@ -195,7 +198,9 @@
               class="bg-blue-900 bg-opacity-40 text-blue-300 border border-blue-800 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider">
               Workflow
             </span>
-            <span class="text-gray-400 text-sm font-mono">10 Steps to Feature-First</span>
+            <span class="text-gray-400 text-sm font-mono"
+              >10 Steps to Feature-First</span
+            >
           </div>
           <h1
             class="font-heading text-3xl font-extrabold text-white tracking-tight">
@@ -219,7 +224,7 @@
         </div>
         <div class="steps-grid">
           <!-- STEP 1 -->
-          <div class="step-card phase-setup">
+          <div class="step-card phase-setup" style="height: 240px !important">
             <div class="step-number">01</div>
             <i class="fas fa-folder-plus step-icon text-blue-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Criar Estrutura</h3>
@@ -229,7 +234,7 @@
             <div class="code-pill">mkdir src/features/xy</div>
           </div>
           <!-- STEP 2 -->
-          <div class="step-card phase-setup">
+          <div class="step-card phase-setup" style="height: 240px !important">
             <div class="step-number">02</div>
             <i class="fas fa-cloud-arrow-down step-icon text-blue-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Extrair API</h3>
@@ -239,7 +244,7 @@
             <div class="code-pill">api/myFeatureApi.ts</div>
           </div>
           <!-- STEP 3 -->
-          <div class="step-card phase-setup">
+          <div class="step-card phase-setup" style="height: 240px !important">
             <div class="step-number">03</div>
             <i class="fas fa-server step-icon text-blue-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Hooks (Server)</h3>
@@ -249,7 +254,7 @@
             <div class="code-pill">hooks/useMyQuery.ts</div>
           </div>
           <!-- STEP 4 -->
-          <div class="step-card phase-setup">
+          <div class="step-card phase-setup" style="height: 240px !important">
             <div class="step-number">04</div>
             <i class="fas fa-database step-icon text-blue-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Store (Client)</h3>
@@ -259,7 +264,7 @@
             <div class="code-pill">stores/useMyStore.ts</div>
           </div>
           <!-- STEP 5 -->
-          <div class="step-card phase-setup">
+          <div class="step-card phase-setup" style="height: 240px !important">
             <div class="step-number">05</div>
             <i class="fas fa-shield-halved step-icon text-blue-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Validators</h3>
@@ -269,7 +274,7 @@
             <div class="code-pill">validators/schema.ts</div>
           </div>
           <!-- STEP 6 -->
-          <div class="step-card phase-logic">
+          <div class="step-card phase-logic" style="height: 240px !important">
             <div class="step-number">06</div>
             <i class="fas fa-brain step-icon text-purple-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">ViewModels</h3>
@@ -279,7 +284,7 @@
             <div class="code-pill">viewModels/useLogic.ts</div>
           </div>
           <!-- STEP 7 -->
-          <div class="step-card phase-logic">
+          <div class="step-card phase-logic" style="height: 240px !important">
             <div class="step-number">07</div>
             <i class="fas fa-wand-magic-sparkles step-icon text-purple-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Refatorar Telas</h3>
@@ -289,7 +294,7 @@
             <div class="code-pill">screens/MyScreen.tsx</div>
           </div>
           <!-- STEP 8 -->
-          <div class="step-card phase-cleanup">
+          <div class="step-card phase-cleanup" style="height: 240px !important">
             <div class="step-number">08</div>
             <i class="fas fa-plug step-icon text-emerald-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Public API</h3>
@@ -299,7 +304,7 @@
             <div class="code-pill">index.ts</div>
           </div>
           <!-- STEP 9 -->
-          <div class="step-card phase-cleanup">
+          <div class="step-card phase-cleanup" style="height: 240px !important">
             <div class="step-number">09</div>
             <i class="fas fa-rotate step-icon text-emerald-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Atualizar Imports</h3>
@@ -309,7 +314,7 @@
             <div class="code-pill">Fix references</div>
           </div>
           <!-- STEP 10 -->
-          <div class="step-card phase-cleanup">
+          <div class="step-card phase-cleanup" style="height: 240px !important">
             <div class="step-number">10</div>
             <i class="fas fa-trash-can step-icon text-red-400"></i>
             <h3 class="font-bold text-white text-xs mb-1">Remover Legado</h3>
