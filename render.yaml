@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: new-architect-presentation
+    runtime: static
+    # Comando de build: instala dependências e gera a pasta dist
+    buildCommand: corepack enable pnpm && pnpm install && pnpm run build
+    # Pasta que o Vite gera após o build (obrigatório para static sites)
+    staticPublishPath: dist
